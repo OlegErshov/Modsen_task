@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.Domain.Interfaces
 {
-    internal interface IAuthorRepository
+    public interface IAuthorRepository
     {
     }
 }

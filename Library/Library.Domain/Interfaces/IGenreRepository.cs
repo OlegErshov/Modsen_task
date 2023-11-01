@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Library.Domain.Interfaces
 {
-    internal interface IGenreRepository
+    public interface IGenreRepository
     {
+
     }
 }

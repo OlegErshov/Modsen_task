@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.Domain.Entities
 {
-    public class Genre
+    internal interface IEntity
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
     }
 }
