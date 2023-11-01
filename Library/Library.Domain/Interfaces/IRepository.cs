@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Domain.Entities
+namespace Library.Domain.Interfaces
 {
-    public class Genre
+    internal interface IRepository
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
     }
 }
