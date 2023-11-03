@@ -14,6 +14,8 @@ namespace Library.Domain.Entities
         public string Description { get; set; }
         public DateTime RecieveDate { get; set; }
         public DateTime ReturnDate { get; set; }
+        public Author Author { get; set; }
+        public Genre Genre { get; set; }
 
 
 

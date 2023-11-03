@@ -14,7 +14,31 @@ namespace Library.Persistance.EntitiesConfiguration
         public void Configure(EntityTypeBuilder<Book> builder)
         {
             builder.HasKey(book => book.Id);
-            builder.Property(book => book.Title).HasMaxLength(255)
-        }
+
+            builder.HasIndex(book => book.ISBN).IsUnique();
+
+
+
+            builder.Property(book => book.Title).IsRequired()
+                                                .HasMaxLength(255);
+
+            builder.Property(book => book.ISBN).IsRequired()
+                                                .HasMaxLength(20);
+
+            builder.Property(book => book.Description).IsRequired()
+                                           .HasMaxLength(500);
+
+            builder.Property(book => book.ReturnDate).IsRequired()
+                                                     .HasColumnType("date");
+
+            builder.Property(book => book.RecieveDate).IsRequired()
+                                                     .HasColumnType("date");
+
+            builder.Property(book => book.Author.Id).IsRequired()
+                                                 .HasColumnName("authorId");
+
+            builder.Property(book => book.Genre.Id).IsRequired()
+                                                 .HasColumnName("genreId");
+        }   
     }
 }
