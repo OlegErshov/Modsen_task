@@ -1,0 +1,5 @@
+D:\BSUIR\Modsen_task\Library\Library.Persistance\obj\Debug\net6.0\Library.Persistance.csproj.AssemblyReference.cache
+D:\BSUIR\Modsen_task\Library\Library.Persistance\obj\Debug\net6.0\Library.Persistance.GeneratedMSBuildEditorConfig.editorconfig
+D:\BSUIR\Modsen_task\Library\Library.Persistance\obj\Debug\net6.0\Library.Persistance.AssemblyInfoInputs.cache
+D:\BSUIR\Modsen_task\Library\Library.Persistance\obj\Debug\net6.0\Library.Persistance.AssemblyInfo.cs
+D:\BSUIR\Modsen_task\Library\Library.Persistance\obj\Debug\net6.0\Library.Persistance.csproj.CoreCompileInputs.cache

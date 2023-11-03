@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.API", "Library.API\Library.API.csproj", "{C55D93DE-30D0-433E-8293-8DAB62DAE08A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.API", "Library.API\Library.API.csproj", "{C55D93DE-30D0-433E-8293-8DAB62DAE08A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Domain", "Library.Domain\Library.Domain.csproj", "{93046F45-121A-47B1-8D4F-D4EB4E7A4A8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Domain", "Library.Domain\Library.Domain.csproj", "{93046F45-121A-47B1-8D4F-D4EB4E7A4A8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Persistance", "Library.Persistance\Library.Persistance.csproj", "{44FBACCE-8EC6-45FF-BAF4-18F249AB22B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{93046F45-121A-47B1-8D4F-D4EB4E7A4A8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93046F45-121A-47B1-8D4F-D4EB4E7A4A8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93046F45-121A-47B1-8D4F-D4EB4E7A4A8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44FBACCE-8EC6-45FF-BAF4-18F249AB22B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44FBACCE-8EC6-45FF-BAF4-18F249AB22B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44FBACCE-8EC6-45FF-BAF4-18F249AB22B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44FBACCE-8EC6-45FF-BAF4-18F249AB22B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

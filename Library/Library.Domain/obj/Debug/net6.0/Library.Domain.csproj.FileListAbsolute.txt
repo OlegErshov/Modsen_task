@@ -1,0 +1,11 @@
+D:\BSUIR\Modsen_task\Library\Library.Domain\bin\Debug\net6.0\Library.Domain.deps.json
+D:\BSUIR\Modsen_task\Library\Library.Domain\bin\Debug\net6.0\Library.Domain.dll
+D:\BSUIR\Modsen_task\Library\Library.Domain\bin\Debug\net6.0\Library.Domain.pdb
+D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\Library.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\Library.Domain.AssemblyInfoInputs.cache
+D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\Library.Domain.AssemblyInfo.cs
+D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\Library.Domain.csproj.CoreCompileInputs.cache
+D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\Library.Domain.dll
+D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\refint\Library.Domain.dll
+D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\Library.Domain.pdb
+D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\ref\Library.Domain.dll
