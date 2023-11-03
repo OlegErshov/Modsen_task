@@ -14,9 +14,16 @@ namespace Library.Persistance.EntitiesConfiguration
         public void Configure(EntityTypeBuilder<Author> builder)
         {
             builder.HasKey(author => author.Id);
+
             builder.Property(author => author.FirstName).IsRequired()
                                                         .HasMaxLength(100);
-            
+
+            builder.Property(author => author.Surname).IsRequired()
+                                                      .HasMaxLength(100);
+
+            builder.HasMany(author => author.Books)
+                   .WithOne(book => book.Author)
+                   .HasForeignKey(book => book.Author.Id);
         }
     }
 }

@@ -12,6 +12,8 @@ namespace Library.Domain.Entities
         public string FirstName { get; set; }
         public string Surname { get; set; }
 
+        public ICollection<Book> Books { get; set; }
+
 
     }
 }
