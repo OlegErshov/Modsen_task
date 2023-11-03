@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.Domain.Entities
 {
-    public class Genre
+    public class Genre : IEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

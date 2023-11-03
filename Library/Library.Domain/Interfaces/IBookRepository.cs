@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace Library.Domain.Interfaces
 {
-    public interface IBookRepository
+    public interface IBookRepository<T> : IRepository<T> where T : Book
     {
-        Task<Book> GetBookByIdAsync(Guid id, CancellationToken cancellationToken);
-        Task<IEnumerable<Book>> GetBooksListAsync(CancellationToken cancellationToken);
-        Task CreateBook(Book book, CancellationToken cancellationToken);
-        Task UpdateBookAsync(int id, Book book, CancellationToken cancellationToken);
-        Task DeleteBooknAsync(int id);
+        public  Task GetBookByISDN(string isdn);
     }
 }
