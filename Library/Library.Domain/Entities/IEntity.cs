@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Library.Domain.Entities
 {
-    internal interface IEntity
+    public interface IEntity
     {
+
     }
 }
