@@ -8,11 +8,18 @@ namespace Library.Domain.Entities
 {
     public class Author : IEntity
     {
-        public Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string Surname { get; set; }
 
-        public ICollection<Book> Books { get; set; }
+        public Author(Guid id,string firstName, string surname) 
+        {
+            Id = id;
+            FirstName = firstName;
+            Surname = surname;
+        }
+        public Guid Id { get; private set; }
+        public string FirstName { get; private set; } 
+        public string Surname { get; private set; } 
+
+        public ICollection<Book> Books { get; private set; } = new List<Book>();
 
 
     }

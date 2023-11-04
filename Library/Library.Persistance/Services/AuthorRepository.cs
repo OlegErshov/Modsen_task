@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Persistance.Services
 {
-    public class AuthorRepository : IAuthorRepository<Author>
+    public class AuthorRepository : IAuthorRepository
     {
         public Task AddAsync(Author entity, CancellationToken cancellationToken)
         {
@@ -34,5 +34,11 @@ namespace Library.Persistance.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
+
 }
