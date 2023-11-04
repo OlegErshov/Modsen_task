@@ -14,5 +14,6 @@ namespace Library.Domain.Interfaces
         Task AddAsync(T entity, CancellationToken cancellationToken);
         Task UpdateAsync(int id, T entity, CancellationToken cancellationToken);
         Task DeleteAsync(int id);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

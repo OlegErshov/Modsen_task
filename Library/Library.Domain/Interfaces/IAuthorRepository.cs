@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Domain.Interfaces
 {
-    public interface IAuthorRepository<T> : IRepository<T> where T : Author
+    public interface IAuthorRepository : IRepository<Author>
     {
 
     }
