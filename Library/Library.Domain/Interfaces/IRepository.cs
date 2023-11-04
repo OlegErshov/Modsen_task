@@ -12,8 +12,8 @@ namespace Library.Domain.Interfaces
         Task<Book> GetByIdAsync(Guid id, CancellationToken cancellationToken);
         Task<IEnumerable<T>> GetListAsync(CancellationToken cancellationToken);
         Task AddAsync(T entity, CancellationToken cancellationToken);
-        Task UpdateAsync(int id, T entity, CancellationToken cancellationToken);
-        Task DeleteAsync(int id);
+        Task UpdateAsync(Guid id, T entity, CancellationToken cancellationToken);
+        Task DeleteAsync(Guid id);
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
