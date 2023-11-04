@@ -15,7 +15,7 @@ namespace Library.Persistance.Services
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace Library.Persistance.Services
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(int id, Author entity, CancellationToken cancellationToken)
+        public Task UpdateAsync(Guid id, Author entity, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

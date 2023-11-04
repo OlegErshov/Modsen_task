@@ -15,12 +15,12 @@ namespace Library.Persistance.Services
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(int id)
+        public Task DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task GetBookByISDN(string isdn)
+        public Task GetBookByISDN(string isbn)
         {
             throw new NotImplementedException();
         }
@@ -35,7 +35,7 @@ namespace Library.Persistance.Services
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(int id, Book entity, CancellationToken cancellationToken)
+        public Task UpdateAsync(Guid id, Book entity, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
