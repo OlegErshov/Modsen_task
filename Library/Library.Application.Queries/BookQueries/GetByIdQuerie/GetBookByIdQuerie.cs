@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Application.Queries.AuthorQueries.GetByIdQuerie
+namespace Library.Application.Queries.BookQueries.GetByIdQuerie
 {
-    public class GetByIdQuerie : IRequest<Author>
+    public class GetBookByIdQuerie : IRequest<Book>
     {
-        public Guid id { get; set; }
+        public Guid Id { get; set; }
     }
 }
