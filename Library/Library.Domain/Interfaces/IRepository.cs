@@ -9,7 +9,7 @@ namespace Library.Domain.Interfaces
 {
     public interface IRepository<T> where T : IEntity
     {
-        Task<Book> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken);
         Task<IEnumerable<T>> GetListAsync(CancellationToken cancellationToken);
         Task AddAsync(T entity, CancellationToken cancellationToken);
         Task UpdateAsync(Guid id, T entity, CancellationToken cancellationToken);

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+
 
 namespace Library.Application.Commands.AuthorCommands.DeleteCommand
 {
-    internal class DeleteAuthorCommand
+    public class DeleteAuthorCommand : IRequest<Unit>
     {
+        public Guid Id { get; set; }
     }
 }
