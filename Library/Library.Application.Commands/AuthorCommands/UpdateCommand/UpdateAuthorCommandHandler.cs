@@ -13,10 +13,10 @@ namespace Library.Application.Commands.AuthorCommands.UpdateCommand
 {
     public class UpdateAuthorCommandHandler : IRequestHandler<UpdateAuthorCommand, Unit>
     {
-        private readonly ILogger<CreateAuthorCommandHandler> _logger;
+        private readonly ILogger<UpdateAuthorCommandHandler> _logger;
         private readonly IAuthorRepository _authorRepository;
 
-        public UpdateAuthorCommandHandler(ILogger<CreateAuthorCommandHandler> logger, IAuthorRepository authorRepository)
+        public UpdateAuthorCommandHandler(ILogger<UpdateAuthorCommandHandler> logger, IAuthorRepository authorRepository)
         {
             _logger = logger;
             _authorRepository = authorRepository;

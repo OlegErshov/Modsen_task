@@ -13,10 +13,10 @@ namespace Library.Application.Commands.BookCommands.UpdateCommand
 {
     public class UpdateBookCommandHandler : IRequestHandler<UpdateBookCommand, Unit>
     {
-        private readonly ILogger<UpdateCommandHandler> _logger;
+        private readonly ILogger<UpdateBookCommandHandler> _logger;
         private readonly IBookRepository _bookRepository;
 
-        public UpdateBookCommandHandler(ILogger<CreateAuthorCommandHandler> logger, IBookRepository bookRepository)
+        public UpdateBookCommandHandler(ILogger<UpdateBookCommandHandler> logger, IBookRepository bookRepository)
         {
             _logger = logger;
             _bookRepository = bookRepository;
