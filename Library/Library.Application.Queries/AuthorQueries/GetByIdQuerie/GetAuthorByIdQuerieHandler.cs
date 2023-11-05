@@ -2,27 +2,23 @@
 using Library.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Library.Application.Queries.AuthorQueries.GetByIdQuerie
 {
-    public class GetByIdQuerieHandler : IRequestHandler<GetByIdQuerie, Author>
+    public class GetAuthorByIdQuerieHandler : IRequestHandler<GetAuthorByIdQuerie, Author>
     {
 
-        private readonly ILogger<GetByIdQuerieHandler> _logger;
+        private readonly ILogger<GetAuthorByIdQuerieHandler> _logger;
         private readonly IAuthorRepository _authorRepository;
 
-        public GetByIdQuerieHandler(ILogger<GetByIdQuerieHandler> logger, IAuthorRepository authorRepository)
+        public GetAuthorByIdQuerieHandler(ILogger<GetAuthorByIdQuerieHandler> logger, IAuthorRepository authorRepository)
         {
             _logger = logger;
             _authorRepository = authorRepository;
         }
 
-        public async Task<Author> Handle(GetByIdQuerie request, CancellationToken cancellationToken)
+        public async Task<Author> Handle(GetAuthorByIdQuerie request, CancellationToken cancellationToken)
         {
              var author = await _authorRepository.GetByIdAsync(request.id, cancellationToken);
 
