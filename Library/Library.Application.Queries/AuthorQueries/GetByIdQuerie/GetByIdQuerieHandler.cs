@@ -24,7 +24,7 @@ namespace Library.Application.Queries.AuthorQueries.GetByIdQuerie
 
         public async Task<Author> Handle(GetByIdQuerie request, CancellationToken cancellationToken)
         {
-             var author = await _authorRepository.GetByIdAsync(request.id, cancellationToken).Result;
+             var author = await _authorRepository.GetByIdAsync(request.id, cancellationToken);
 
             _logger.LogInformation(author is not null
                ? $"Post {request.id} has been retrieved from db"
