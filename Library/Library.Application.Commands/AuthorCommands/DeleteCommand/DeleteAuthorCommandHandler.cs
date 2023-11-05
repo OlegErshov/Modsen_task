@@ -13,8 +13,14 @@ namespace Library.Application.Commands.AuthorCommands.DeleteCommand
 {
     public class DeleteAuthorCommandHandler : IRequestHandler<DeleteAuthorCommand, Unit>
     {
-        private readonly ILogger<CreateAuthorCommandHandler> _logger;
+        private readonly ILogger<DeleteAuthorCommandHandler> _logger;
         private readonly IAuthorRepository _authorRepository;
+
+        public DeleteAuthorCommandHandler(ILogger<DeleteAuthorCommandHandler> logger, IAuthorRepository authorRepository)
+        {
+            _logger = logger;
+            _authorRepository = authorRepository;
+        }
 
         public async Task<Unit> Handle(DeleteAuthorCommand request, CancellationToken cancellationToken)
         {
