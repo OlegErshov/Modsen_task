@@ -12,11 +12,24 @@ namespace Library.Application.Queries.BookQueries.GetByIdQuerie
 {
     public class GetBookByIdQuerieHandler : IRequestHandler<GetBookByIdQuerie, Book>
     {
-        private readonly ILogger<CreateAuthorCommandHandler> _logger;
+        private readonly ILogger<GetBookByIdQuerieHandler> _logger;
         private readonly IBookRepository _bookRepository;
-        public Task<Book> Handle(GetBookByIdQuerie request, CancellationToken cancellationToken)
+
+        public GetBookByIdQuerieHandler(ILogger<GetBookByIdQuerieHandler> logger, IBookRepository bookRepository)
         {
-            throw new NotImplementedException();
+            _logger = logger;
+            _bookRepository = bookRepository;
+        }
+
+        public async Task<Book> Handle(GetBookByIdQuerie request, CancellationToken cancellationToken)
+        {
+            var book = await _bookRepository.GetByIdAsync(request.Id, cancellationToken);
+
+            _logger.LogInformation(book is not null
+               ? $"Book {request.Id} has been retrieved from db"
+               : $"Failed to get book {request.Id}");
+
+            return book;
         }
     }
 }

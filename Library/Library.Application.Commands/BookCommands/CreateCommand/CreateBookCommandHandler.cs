@@ -13,10 +13,10 @@ namespace Library.Application.Commands.BookCommands.CreateCommand
 {
     public class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, Unit>
     {
-        private readonly ILogger<CreateAuthorCommandHandler> _logger;
+        private readonly ILogger<CreateBookCommandHandler> _logger;
         private readonly IBookRepository _bookRepository;
 
-        public CreateBookCommandHandler(ILogger<CreateAuthorCommandHandler> logger, IBookRepository bookRepository)
+        public CreateBookCommandHandler(ILogger<CreateBookCommandHandler> logger, IBookRepository bookRepository)
         {
             _logger = logger;
             _bookRepository = bookRepository;

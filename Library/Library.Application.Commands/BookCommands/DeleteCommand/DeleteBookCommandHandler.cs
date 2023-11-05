@@ -13,10 +13,10 @@ namespace Library.Application.Commands.BookCommands.DeleteCommand
 {
     public class DeleteBookCommandHandler : IRequestHandler<DeleteBookCommand, Unit>
     {
-        private readonly ILogger<CreateAuthorCommandHandler> _logger;
+        private readonly ILogger<DeleteBookCommandHandler> _logger;
         private readonly IBookRepository _bookRepository;
 
-        public DeleteBookCommandHandler(ILogger<CreateAuthorCommandHandler> logger, IBookRepository bookRepository)
+        public DeleteBookCommandHandler(ILogger<DeleteBookCommandHandler> logger, IBookRepository bookRepository)
         {
             _logger = logger;
             _bookRepository = bookRepository;
