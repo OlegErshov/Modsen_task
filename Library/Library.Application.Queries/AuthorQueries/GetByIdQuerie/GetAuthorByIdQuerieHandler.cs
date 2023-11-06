@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Library.Application.Queries.AuthorQueries.GetByIdQuerie
 {
-    public class GetAuthorByIdQuerieHandler : IRequestHandler<GetAuthorByIdQuerie, AuthorReply>
+    public class GetAuthorByIdQuerieHandler : IRequestHandler<GetAuthorByIdQuerie, AuthorDTO>
     {
 
         private readonly ILogger<GetAuthorByIdQuerieHandler> _logger;
@@ -21,7 +21,7 @@ namespace Library.Application.Queries.AuthorQueries.GetByIdQuerie
             _mapper = mapper;
         }
 
-        public async Task<AuthorReply> Handle(GetAuthorByIdQuerie request, CancellationToken cancellationToken)
+        public async Task<AuthorDTO> Handle(GetAuthorByIdQuerie request, CancellationToken cancellationToken)
         {
              var author = await _authorRepository.GetByIdAsync(request.id, cancellationToken);
 
@@ -29,7 +29,7 @@ namespace Library.Application.Queries.AuthorQueries.GetByIdQuerie
                ? $"Post {request.id} has been retrieved from db"
                : $"Failed to get post {request.id}");
 
-            return _mapper.Map<AuthorReply>(author );
+            return _mapper.Map<AuthorDTO>(author );
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Queries.AuthorQueries.GetByIdQuerie
 {
-    public class GetAuthorByIdQuerie : IRequest<AuthorReply>
+    public class GetAuthorByIdQuerie : IRequest<AuthorDTO>
     {
         public Guid id { get; set; }
     }

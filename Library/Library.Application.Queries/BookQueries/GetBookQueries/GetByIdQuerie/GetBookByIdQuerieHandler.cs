@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Queries.BookQueries.GetBookQueries.GetByIdQuerie
 {
-    public class GetBookByIdQuerieHandler : IRequestHandler<GetBookByIdQuerie, BookReply>
+    public class GetBookByIdQuerieHandler : IRequestHandler<GetBookByIdQuerie, BookDTO>
     {
         private readonly ILogger<GetBookByIdQuerieHandler> _logger;
         private readonly IBookRepository _bookRepository;
@@ -24,7 +24,7 @@ namespace Library.Application.Queries.BookQueries.GetBookQueries.GetByIdQuerie
             _mapper = mapper;
         }
 
-        public async Task<BookReply> Handle(GetBookByIdQuerie request, CancellationToken cancellationToken)
+        public async Task<BookDTO> Handle(GetBookByIdQuerie request, CancellationToken cancellationToken)
         {
             var book = await _bookRepository.GetByIdAsync(request.Id, cancellationToken);
 
@@ -32,7 +32,7 @@ namespace Library.Application.Queries.BookQueries.GetBookQueries.GetByIdQuerie
                ? $"Book {request.Id} has been retrieved from db"
                : $"Failed to get book {request.Id}");
 
-            return _mapper.Map<BookReply>(book);
+            return _mapper.Map<BookDTO>(book);
         }
     }
 }

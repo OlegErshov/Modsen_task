@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Queries.BookQueries.GetBookQueries
 {
-    public class BookReply : IMapWith<Book>
+    public class BookDTO : IMapWith<Book>
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
@@ -23,7 +23,7 @@ namespace Library.Application.Queries.BookQueries.GetBookQueries
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Author, AuthorReply>();
+            profile.CreateMap<Author, AuthorDTO>();
         }
     }
 }
