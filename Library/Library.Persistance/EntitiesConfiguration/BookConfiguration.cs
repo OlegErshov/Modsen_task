@@ -28,11 +28,9 @@ namespace Library.Persistance.EntitiesConfiguration
             builder.Property(book => book.Description).IsRequired()
                                            .HasMaxLength(500);
 
-            builder.Property(book => book.ReturnDate).IsRequired()
-                                                     .HasColumnType("date");
+            builder.Property(book => book.ReturnDate).HasColumnType("date");
 
-            builder.Property(book => book.RecieveDate).IsRequired()
-                                                     .HasColumnType("date");
+            builder.Property(book => book.RecieveDate).HasColumnType("date");
 
             builder.Property(book => book.Author.Id).IsRequired()
                                                  .HasColumnName("authorId");

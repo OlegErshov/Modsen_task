@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using MediatR;
+ 
 namespace Library.Application.Commands.AuthorCommands.CreateCommand
 {
-    internal class CreateAuthorCommand
+    public class CreateAuthorCommand : IRequest<Unit>
     {
+        public string FirstName { get;  set; }
+        public string Surname { get;  set; }
     }
 }

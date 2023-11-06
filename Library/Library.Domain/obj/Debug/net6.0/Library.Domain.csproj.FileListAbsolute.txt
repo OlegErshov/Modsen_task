@@ -9,3 +9,4 @@ D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\Library.Domain.dll
 D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\refint\Library.Domain.dll
 D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\Library.Domain.pdb
 D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\ref\Library.Domain.dll
+D:\BSUIR\Modsen_task\Library\Library.Domain\obj\Debug\net6.0\Library.Domain.csproj.AssemblyReference.cache
