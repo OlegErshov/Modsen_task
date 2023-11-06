@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Persistance.Services
 {
-    public class BookRepository : IBookRepository<Book>
+    public class BookRepository : IBookRepository
     {
         public Task AddAsync(Book entity, CancellationToken cancellationToken)
         {
@@ -20,7 +20,7 @@ namespace Library.Persistance.Services
             throw new NotImplementedException();
         }
 
-        public Task GetBookByISDN(string isbn)
+        public Task<Book> GetBookByISBN(string isbn,CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

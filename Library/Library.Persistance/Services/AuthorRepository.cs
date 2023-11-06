@@ -20,7 +20,7 @@ namespace Library.Persistance.Services
             throw new NotImplementedException();
         }
 
-        public Task<Book> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        public Task<Author> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
