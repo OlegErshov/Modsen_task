@@ -4,7 +4,7 @@ using Library.Domain.Mapping;
 
 namespace Library.Application.Queries.AuthorQueries.GetByIdQuerie
 {
-    public class AuthorReply : IMapWith<Author>
+    public class AuthorDTO : IMapWith<Author>
     {
         public Guid Id { get; private set; }
         public string FirstName { get; private set; }
@@ -12,7 +12,7 @@ namespace Library.Application.Queries.AuthorQueries.GetByIdQuerie
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Author, AuthorReply>()
+            profile.CreateMap<Author, AuthorDTO>()
                 .ForMember(authorReply => authorReply.Id,
                     opt => opt.MapFrom(author => author.Id))
                 .ForMember(authorReply => authorReply.FirstName,

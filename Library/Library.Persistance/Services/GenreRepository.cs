@@ -1,5 +1,6 @@
 ﻿using Library.Domain.Entities;
 using Library.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,24 +11,35 @@ namespace Library.Persistance.Services
 {
     public class GenreRepository : IGenreRepository<Genre>
     {
-        public Task AddAsync(Genre entity, CancellationToken cancellationToken)
+        private readonly IAppDbContext _context;
+
+        public GenreRepository(IAppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task AddAsync(Genre entity, CancellationToken cancellationToken)
+        {
+            await _context.Genres.AddAsync(entity);
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var genre = _context.Genres.FindAsync(id).Result;
+            _context.Genres.Remove(genre);
         }
 
-        public Task<Genre> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<Genre> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            IQueryable<Genre>? query = _context.Genres.AsQueryable();
+
+            query = query.Where(el => el.Id == id);
+
+            return await query.FirstOrDefaultAsync();
         }
 
-        public Task<IEnumerable<Genre>> GetListAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<Genre>> GetListAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _context.Genres.ToListAsync(cancellationToken);
         }
 
         public Task UpdateAsync(Guid id, Genre entity, CancellationToken cancellationToken)
@@ -37,7 +49,7 @@ namespace Library.Persistance.Services
 
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _context.SaveChangesAsync(cancellationToken);
         }
     }
 }

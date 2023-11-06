@@ -10,4 +10,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Library.Application.Commands\Library.Application.Commands.csproj" />
+    <ProjectReference Include="..\Library.Application.Queries\Library.Application.Queries.csproj" />
+  </ItemGroup>
+
 </Project>

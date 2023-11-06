@@ -1,8 +1,10 @@
 ﻿using Library.Domain.Entities;
 using Library.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,34 +12,45 @@ namespace Library.Persistance.Services
 {
     public class AuthorRepository : IAuthorRepository
     {
-        public Task AddAsync(Author entity, CancellationToken cancellationToken)
+        private readonly IAppDbContext _context;
+
+        public AuthorRepository(IAppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task AddAsync(Author entity, CancellationToken cancellationToken)
+        {
+            await _context.Authors.AddAsync(entity, cancellationToken);
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var author = _context.Authors.FindAsync(id).Result;
+            _context.Authors.Remove(author);
         }
 
-        public Task<Author> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<Author> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            IQueryable<Author>? query = _context.Authors.AsQueryable();
+
+            query = query.Where(el => el.Id == id);
+
+            return await query.FirstOrDefaultAsync();
         }
 
-        public Task<IEnumerable<Author>> GetListAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<Author>> GetListAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _context.Authors.ToListAsync(cancellationToken);
         }
 
-        public Task UpdateAsync(Guid id, Author entity, CancellationToken cancellationToken)
+        public async Task UpdateAsync(Guid id, Author entity, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _context.Authors.Update(entity);
         }
 
-        public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _context.SaveChangesAsync(cancellationToken); 
         }
     }
 

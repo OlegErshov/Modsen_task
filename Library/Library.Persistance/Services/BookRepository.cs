@@ -1,5 +1,6 @@
 ﻿using Library.Domain.Entities;
 using Library.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,29 +11,44 @@ namespace Library.Persistance.Services
 {
     public class BookRepository : IBookRepository
     {
-        public Task AddAsync(Book entity, CancellationToken cancellationToken)
+        private readonly IAppDbContext _context;
+
+        public BookRepository(IAppDbContext context) 
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task AddAsync(Book entity, CancellationToken cancellationToken)
+        {
+            await _context.Books.AddAsync(entity);
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var book = _context.Books.FindAsync(id).Result;
+            _context.Books.Remove(book);
         }
 
-        public Task<Book> GetBookByISBN(string isbn,CancellationToken cancellationToken)
+        public async Task<Book> GetBookByISBN(string isbn,CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            IQueryable<Book>? query = _context.Books.AsQueryable();
+
+            query = query.Where(el => el.ISBN == isbn);
+
+            return await query.FirstOrDefaultAsync();
         }
 
-        public Task<Book> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<Book> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            IQueryable<Book>? query = _context.Books.AsQueryable();
+
+            query = query.Where(el => el.Id == id);
+
+            return await query.FirstOrDefaultAsync();
         }
 
-        public Task<IEnumerable<Book>> GetListAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<Book>> GetListAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+           return await _context.Books.ToListAsync(cancellationToken);
         }
 
         public Task UpdateAsync(Guid id, Book entity, CancellationToken cancellationToken)
@@ -40,9 +56,9 @@ namespace Library.Persistance.Services
             throw new NotImplementedException();
         }
 
-        public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }
