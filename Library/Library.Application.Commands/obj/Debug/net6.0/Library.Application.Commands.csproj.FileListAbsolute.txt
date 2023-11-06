@@ -1,5 +1,0 @@
-D:\BSUIR\Modsen_task\Library\Library.Application.Commands\obj\Debug\net6.0\Library.Application.Commands.csproj.AssemblyReference.cache
-D:\BSUIR\Modsen_task\Library\Library.Application.Commands\obj\Debug\net6.0\Library.Application.Commands.GeneratedMSBuildEditorConfig.editorconfig
-D:\BSUIR\Modsen_task\Library\Library.Application.Commands\obj\Debug\net6.0\Library.Application.Commands.AssemblyInfoInputs.cache
-D:\BSUIR\Modsen_task\Library\Library.Application.Commands\obj\Debug\net6.0\Library.Application.Commands.AssemblyInfo.cs
-D:\BSUIR\Modsen_task\Library\Library.Application.Commands\obj\Debug\net6.0\Library.Application.Commands.csproj.CoreCompileInputs.cache
