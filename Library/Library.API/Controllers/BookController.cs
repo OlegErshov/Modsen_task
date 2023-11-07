@@ -58,7 +58,7 @@ namespace Library.API.Controllers
             var command = _mapper.Map<CreateBookCommand>(createBookDTO);
 
             var bookId = await Mediator.Send(command);
-            return Created(bookId);
+            return Ok(bookId);
         }
 
         // PUT api/<BookController>/5
