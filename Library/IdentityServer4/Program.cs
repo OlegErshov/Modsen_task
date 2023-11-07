@@ -1,6 +1,8 @@
 using IdentityServer;
 using IdentityServer.Data;
+using IdentityServer.Models;
 using IdentityServer4.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +13,24 @@ var connString = builder.Configuration.GetConnectionString("DataAccessPostgreSql
 builder.Services.AddDbContext<AuthDbContext>(opt =>
                                 opt.UseNpgsql(connString));
 
+builder.Services.AddIdentity<AppUser, IdentityRole>(config =>
+{
+    config.Password.RequiredLength = 4;
+    config.Password.RequireDigit = false;
+    config.Password.RequireNonAlphanumeric = false;
+    config.Password.RequireUppercase = true;
+}).AddEntityFrameworkStores<AuthDbContext>()
+  .AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(config =>
+{
+    config.Cookie.Name = "Library.Identity.Cookie";
+    config.LoginPath = "/Auth/Login";
+    config.LogoutPath = "/Auth/Logout";
+});
+
 builder.Services.AddIdentityServer()
+    .AddAspNetIdentity<AppUser>()
     .AddInMemoryApiResources(Configuration.ApiResources)
     .AddInMemoryIdentityResources(Configuration.IdentityResources)
     .AddInMemoryApiScopes(Configuration.ApiScopes)
