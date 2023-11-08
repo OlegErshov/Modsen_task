@@ -32,10 +32,10 @@ namespace Library.Persistance.EntitiesConfiguration
 
             builder.Property(book => book.RecieveDate).HasColumnType("date");
 
-            builder.Property(book => book.Author.Id).IsRequired()
+            builder.Property(book => book.AuthorId).IsRequired()
                                                  .HasColumnName("authorId");
 
-            builder.Property(book => book.Genre.Id).IsRequired()
+            builder.Property(book => book.GenreId).IsRequired()
                                                  .HasColumnName("genreId");
         }   
     }

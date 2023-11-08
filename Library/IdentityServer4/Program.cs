@@ -1,10 +1,14 @@
 using IdentityServer;
 using IdentityServer.Data;
+using IdentityServer.Domain.Interfaces;
+using IdentityServer.Domain.Models;
 using IdentityServer.Models;
+using IdentityServer.Services;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +22,8 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(config =>
     config.Password.RequiredLength = 4;
     config.Password.RequireDigit = false;
     config.Password.RequireNonAlphanumeric = false;
-    config.Password.RequireUppercase = true;
+    config.Password.RequireUppercase = false;
+    config.Password.RequireLowercase = false;
 }).AddEntityFrameworkStores<AuthDbContext>()
   .AddDefaultTokenProviders();
 
@@ -37,10 +42,33 @@ builder.Services.AddIdentityServer()
     .AddInMemoryClients(Configuration.Clients)
     .AddDeveloperSigningCredential();
 
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<IAuthService, AuthService>();
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+IConfigurationSection settingsSection = builder.Configuration.GetSection("AppSettings");
+AppSettings settings = settingsSection.Get<AppSettings>();
+
+builder.Services.AddAuthentication();
+builder.Services
+    .Configure<AppSettings>(settingsSection);
+
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-app.MapGet("/", () => "Hello World!");
 app.UseRouting();
 app.UseIdentityServer();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapDefaultControllerRoute();
+});
 app.Run();

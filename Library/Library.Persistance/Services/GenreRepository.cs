@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library.Persistance.Services
 {
-    public class GenreRepository : IGenreRepository<Genre>
+    public class GenreRepository : IGenreRepository
     {
         private readonly IAppDbContext _context;
 

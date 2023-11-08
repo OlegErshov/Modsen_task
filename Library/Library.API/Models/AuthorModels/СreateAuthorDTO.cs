@@ -13,7 +13,7 @@ namespace Library.API.Models.AuthorModels
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Author, AuthorDTO>()
+            profile.CreateMap<Author, СreateAuthorDTO>()
                 .ForMember(authorReply => authorReply.Id,
                     opt => opt.MapFrom(author => author.Id))
                 .ForMember(authorReply => authorReply.FirstName,

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Domain.Interfaces
 {
-    public interface IGenreRepository<T> : IRepository<T> where T : Genre
+    public interface IGenreRepository : IRepository<Genre>
     {
 
     }

@@ -16,7 +16,7 @@ namespace Library.API.Models.BookModels
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Author, AuthorDTO>();
+            profile.CreateMap<Book, CreateBookDTO>();
         }
     }
 }

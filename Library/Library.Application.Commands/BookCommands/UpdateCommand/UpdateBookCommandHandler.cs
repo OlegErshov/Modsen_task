@@ -25,7 +25,7 @@ namespace Library.Application.Commands.BookCommands.UpdateCommand
         public async Task<Unit> Handle(UpdateBookCommand request, CancellationToken cancellationToken)
         {
             var book = new Book(request.Id, request.Title, request.ISBN, request.Description, request.RecieveDate, request.ReturnDate,
-                               request.Author, request.Genre);
+                request.Author.Id,request.Genre.Id, request.Author, request.Genre);
             await _bookRepository.UpdateAsync(book.Id, book,cancellationToken);
             await _bookRepository.SaveChangesAsync(cancellationToken);
             return Unit.Value;

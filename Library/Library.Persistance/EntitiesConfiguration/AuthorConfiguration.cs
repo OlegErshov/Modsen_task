@@ -23,7 +23,7 @@ namespace Library.Persistance.EntitiesConfiguration
 
             builder.HasMany(author => author.Books)
                    .WithOne(book => book.Author)
-                   .HasForeignKey(book => book.Author.Id);
+                   .HasForeignKey(book => book.AuthorId);
         }
     }
 }

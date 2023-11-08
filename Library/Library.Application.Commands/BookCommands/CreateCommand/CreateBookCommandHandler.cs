@@ -27,7 +27,7 @@ namespace Library.Application.Commands.BookCommands.CreateCommand
             var Id = Guid.NewGuid();
 
             var book = new Book(Id, request.Title, request.ISBN, request.Description, request.RecieveDate, request.ReturnDate,
-                                request.Author, request.Genre);
+                                request.Author.Id,request.Genre.Id,request.Author, request.Genre);
             await _bookRepository.AddAsync(book, cancellationToken);
             await _bookRepository.SaveChangesAsync(cancellationToken);
 
