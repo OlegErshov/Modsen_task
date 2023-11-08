@@ -7,6 +7,7 @@ using Library.Application.Commands.BookCommands.DeleteCommand;
 using Library.Application.Commands.BookCommands.UpdateCommand;
 using Library.Application.Queries.BookQueries.GetBookQueries;
 using Library.Application.Queries.BookQueries.GetBookQueries.GetByIdQuerie;
+using Library.Application.Queries.BookQueries.GetBookQueries.GetByISBNQuerie;
 using Library.Application.Queries.BookQueries.GetBooksListQueries;
 using Library.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -50,6 +51,19 @@ namespace Library.API.Controllers
             var vw = await Mediator.Send(querie);
             return Ok(vw);
         }
+
+        [HttpGet("{isbn}")]
+        public async Task<ActionResult<BookDTO>> Get(string isbn)
+        {
+            var querie = new GetBookByISBNQuerie
+            {
+                ISBN = isbn
+            };
+
+            var vw = await Mediator.Send(querie);
+            return Ok(vw);
+        }
+
 
         // POST api/<BookController>
         [HttpPost]

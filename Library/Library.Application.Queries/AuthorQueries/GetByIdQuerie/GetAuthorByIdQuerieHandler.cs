@@ -26,10 +26,10 @@ namespace Library.Application.Queries.AuthorQueries.GetByIdQuerie
              var author = await _authorRepository.GetByIdAsync(request.id, cancellationToken);
 
             _logger.LogInformation(author is not null
-               ? $"Post {request.id} has been retrieved from db"
-               : $"Failed to get post {request.id}");
+               ? $"Author {request.id} has been retrieved from db"
+               : $"Failed to get author {request.id}");
 
-            return _mapper.Map<AuthorDTO>(author );
+            return _mapper.Map<AuthorDTO>(author);
         }
     }
 }
