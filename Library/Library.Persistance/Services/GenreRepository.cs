@@ -1,4 +1,5 @@
-﻿using Library.Domain.Entities;
+﻿using AutoMapper.QueryableExtensions;
+using Library.Domain.Entities;
 using Library.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -37,6 +37,9 @@ namespace Library.Application.Queries
                 .ForMember(genreDTO => genreDTO.Name,
                     opt => opt.MapFrom(genre => genre.Name));
 
+            CreateMap<IEnumerable<Genre>, IList<GenresListDTO>>();
+
+
             
             CreateMap<Book, BookDTO>();
 

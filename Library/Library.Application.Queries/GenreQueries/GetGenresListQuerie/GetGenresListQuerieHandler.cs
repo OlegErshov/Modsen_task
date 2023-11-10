@@ -1,14 +1,12 @@
 ﻿using AutoMapper;
-using Library.Application.Queries.BookQueries.GetBooksListQueries;
+using AutoMapper.QueryableExtensions;
 using Library.Application.Queries.GenreQueries.GetByIdQuerie;
+using Library.Domain.Entities;
 using Library.Domain.Interfaces;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Library.Application.Queries.GenreQueries.GetGenresListQuerie
 {
@@ -27,13 +25,20 @@ namespace Library.Application.Queries.GenreQueries.GetGenresListQuerie
 
         public async Task<GenresListReply> Handle(GetGenresListQuerie request, CancellationToken cancellationToken)
         {
+
             var genres = await _genreRepository.GetListAsync(cancellationToken);
+
+            IList<GenresListDTO> genresDTO = new List<GenresListDTO>();
+            foreach (var item in genres)
+            {
+                genresDTO.Add(_mapper.Map<GenresListDTO>(item));
+            }
 
             _logger.LogInformation(genres is not null
               ? $"Genres has been retrieved from db"
               : $"Failed to get all genres from db");
 
-            return _mapper.Map<GenresListReply>(genres);
+            return new GenresListReply { Genres = genresDTO };
         }
     }
 }
