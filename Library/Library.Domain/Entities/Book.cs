@@ -35,14 +35,14 @@ namespace Library.Domain.Entities
             GenreId = genreId;
         }
 
-        public Book(Guid id, string title, string isbn, string description, Author author, Genre genre)
+        public Book(Guid id, string title, string isbn, string description, Guid authorId, Guid genreId)
         {
             Id = id;
             Title = title;
             ISBN = isbn;
             Description = description;
-            Author = author;
-            Genre = genre;
+            AuthorId = authorId;
+            GenreId = genreId;
         }
         public Guid Id { get; set; }
         public string Title { get; set; }

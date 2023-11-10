@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Library.Application.Queries.AuthorQueries.GetByIdQuerie;
 using Library.Domain.Entities;
-using Library.Domain.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Linq;

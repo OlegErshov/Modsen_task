@@ -41,7 +41,7 @@ namespace Library.Application.Commands.BookCommands.CreateCommand
                 author => (author.FirstName + author.Surname) == 
                 (request.AuthorReply.FirstName + request.AuthorReply.Surname), cancellationToken);
 
-            var book = new Book(Id, request.Title, request.ISBN, request.Description, author, genre);
+            var book = new Book(Id, request.Title, request.ISBN, request.Description, author.Id, genre.Id);
             await _bookRepository.AddAsync(book, cancellationToken);
             await _bookRepository.SaveChangesAsync(cancellationToken);
 

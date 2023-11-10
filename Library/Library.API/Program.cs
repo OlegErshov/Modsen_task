@@ -1,6 +1,6 @@
+using AutoMapper;
 using Library.Application;
 using Library.Domain.Interfaces;
-using Library.Domain.Mapping;
 using Library.Persistance.ApplicationDbContext;
 using Library.Persistance.Services;
 using MediatR;
@@ -15,6 +15,14 @@ var connString = builder.Configuration.GetConnectionString("DataAccessPostgreSql
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
                                 opt.UseNpgsql(connString));
+
+builder.Services.AddTransient<IAppDbContext, AppDbContext>()
+                .AddTransient<IBookRepository, BookRepository>()
+                .AddTransient<IGenreRepository, GenreRepository>()
+                .AddTransient<IAuthorRepository, AuthorRepository>()
+                .AddAutoMapper(typeof(Library.Application.Queries.MapperProfile),
+                               typeof(Library.Application.Commands.MapperProfile),
+                               typeof(Library.API.MapperProfile));
 
 
 builder.Services.AddControllers();
@@ -49,16 +57,9 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 builder.Services.AddApplication();
-builder.Services.AddAutoMapper(config =>
-{
-    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
-    config.AddProfile(new AssemblyMappingProfile(typeof(IAppDbContext).Assembly));
-});
 
-builder.Services.AddTransient<IAppDbContext, AppDbContext>()
-                .AddTransient<IBookRepository, BookRepository>()
-                .AddTransient<IGenreRepository, GenreRepository>()
-                .AddTransient<IAuthorRepository, AuthorRepository>();
+
+
 
 var app = builder.Build();
 

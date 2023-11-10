@@ -29,7 +29,7 @@ namespace Library.API.Controllers
 
         // GET: api/<GenreController>
         [HttpGet]
-        public async Task<ActionResult<BooksListReply>> GetList()
+        public async Task<ActionResult<GenresListReply>> GetList()
         {
             var querie = new GetGenresListQuerie();
 
