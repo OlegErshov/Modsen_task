@@ -1,5 +1,7 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Linq;
 using System.Reflection;
+using AutoMapper;
 
 
 namespace Library.Domain.Mapping
@@ -19,7 +21,7 @@ namespace Library.Domain.Mapping
             {
                 var instance = Activator.CreateInstance(type);
                 var methodInfo = type.GetMethod("Mapping");
-                methodInfo?.Invoke(instance, new object[] {});
+                methodInfo?.Invoke(instance, new object[] { this });
             }
         }
 

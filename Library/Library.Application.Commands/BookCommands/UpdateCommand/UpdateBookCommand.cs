@@ -1,4 +1,5 @@
-﻿using Library.Domain.Entities;
+﻿using Library.Application.Commands.BookCommands.Models;
+using Library.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Library.Application.Commands.BookCommands.UpdateCommand
         public string Description { get; set; }
         public DateTime RecieveDate { get; set; }
         public DateTime ReturnDate { get; set; }
-        public Author Author { get; set; }
-        public Genre Genre { get; set; }
+        public AuthorReply AuthorReply { get; set; }
+        public GenreReply GenreReply { get; set; }
     }
 }

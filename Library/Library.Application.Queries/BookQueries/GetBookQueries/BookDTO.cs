@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Library.Application.Commands.BookCommands.Models;
 using Library.Application.Queries.AuthorQueries.GetByIdQuerie;
 using Library.Domain.Entities;
 using Library.Domain.Mapping;
@@ -18,8 +19,8 @@ namespace Library.Application.Queries.BookQueries.GetBookQueries
         public string Description { get; set; }
         public DateTime RecieveDate { get; set; }
         public DateTime ReturnDate { get; set; }
-        public Author Author { get; set; }
-        public Genre Genre { get; set; }
+        public AuthorReply AuthorReply { get; set; }
+        public GenreReply GenreReply { get; set; }
 
         public void Mapping(Profile profile)
         {

@@ -52,6 +52,11 @@ namespace Library.Persistance.Services
         {
             return await _context.SaveChangesAsync(cancellationToken); 
         }
+
+        public async Task<Author> FirstOrDefault(Expression<Func<Author, bool>> filter, CancellationToken cancellationToken)
+        {
+            return await _context.Authors.FirstOrDefaultAsync(filter, cancellationToken);
+        }
     }
 
 }

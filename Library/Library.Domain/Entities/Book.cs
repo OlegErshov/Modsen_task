@@ -10,7 +10,7 @@ namespace Library.Domain.Entities
     {
 
         public Book(Guid id, string title,string isbn, string description, DateTime receiveDate, 
-                    DateTime returnDate,Guid authorId,Guid genreId, Author author, Genre genre) 
+                    DateTime returnDate, Author author, Genre genre) 
         { 
             Id = id;
             Title = title;
@@ -18,8 +18,6 @@ namespace Library.Domain.Entities
             Description = description;
             RecieveDate = receiveDate;
             ReturnDate = returnDate;
-            AuthorId = authorId;
-            GenreId = genreId;
             Author = author;
             Genre = genre;
         }
@@ -35,6 +33,16 @@ namespace Library.Domain.Entities
             ReturnDate = returnDate;
             AuthorId = authorId;
             GenreId = genreId;
+        }
+
+        public Book(Guid id, string title, string isbn, string description, Author author, Genre genre)
+        {
+            Id = id;
+            Title = title;
+            ISBN = isbn;
+            Description = description;
+            Author = author;
+            Genre = genre;
         }
         public Guid Id { get; set; }
         public string Title { get; set; }

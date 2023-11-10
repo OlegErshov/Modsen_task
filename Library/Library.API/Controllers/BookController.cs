@@ -77,18 +77,18 @@ namespace Library.API.Controllers
 
         // PUT api/<BookController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] Book book)
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateBookDTO updateBookDTO)
         {
             var command = new UpdateBookCommand
             {
                 Id = id,
-                Title = book.Title,
-                Description = book.Description,
-                ISBN = book.ISBN,
-                RecieveDate = book.RecieveDate,
-                ReturnDate = book.ReturnDate,
-                Author = book.Author,
-                Genre = book.Genre
+                Title = updateBookDTO.Title,
+                Description = updateBookDTO.Description,
+                ISBN = updateBookDTO.ISBN,
+                RecieveDate = updateBookDTO.RecieveDate,
+                ReturnDate = updateBookDTO.ReturnDate,
+                AuthorReply = updateBookDTO.AuthorReply,
+                GenreReply = updateBookDTO.GenreReply
             };
             await Mediator.Send(command);
             return NoContent();

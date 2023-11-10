@@ -1,6 +1,13 @@
+using Library.Application;
+using Library.Domain.Interfaces;
+using Library.Domain.Mapping;
 using Library.Persistance.ApplicationDbContext;
+using Library.Persistance.Services;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +48,17 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+builder.Services.AddApplication();
+builder.Services.AddAutoMapper(config =>
+{
+    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
+    config.AddProfile(new AssemblyMappingProfile(typeof(IAppDbContext).Assembly));
+});
+
+builder.Services.AddTransient<IAppDbContext, AppDbContext>()
+                .AddTransient<IBookRepository, BookRepository>()
+                .AddTransient<IGenreRepository, GenreRepository>()
+                .AddTransient<IAuthorRepository, AuthorRepository>();
 
 var app = builder.Build();
 

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,6 +51,11 @@ namespace Library.Persistance.Services
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             return _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<Genre> FirstOrDefault(Expression<Func<Genre, bool>> filter, CancellationToken cancellationToken)
+        {
+            return await _context.Genres.FirstOrDefaultAsync(filter, cancellationToken);
         }
     }
 }
