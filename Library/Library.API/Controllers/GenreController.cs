@@ -10,6 +10,7 @@ using Library.Application.Queries.BookQueries.GetBookQueries.GetByIdQuerie;
 using Library.Application.Queries.BookQueries.GetBooksListQueries;
 using Library.Application.Queries.GenreQueries.GetByIdQuerie;
 using Library.Application.Queries.GenreQueries.GetGenresListQuerie;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -28,13 +29,14 @@ namespace Library.API.Controllers
         }
 
         // GET: api/<GenreController>
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<ActionResult<GenresListReply>> GetList()
         {
             var querie = new GetGenresListQuerie();
 
             var vw = await Mediator.Send(querie);
-            return Ok(vw);
+            return vw is not null ? Ok(vw) : NotFound();
         }
 
         // GET api/<GenreController>/5
@@ -47,10 +49,11 @@ namespace Library.API.Controllers
             };
 
             var vw = await Mediator.Send(querie);
-            return Ok(vw);
+            return vw is not null ? Ok(vw) : NotFound();
         }
 
         // POST api/<GenreController>
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateGenreDTO createGenreDTO)
         {
@@ -61,12 +64,15 @@ namespace Library.API.Controllers
         }
 
         // PUT api/<GenreController>/5
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public void Update(int id, [FromBody] string value)
         {
+
         }
 
         // DELETE api/<GenreController>/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {

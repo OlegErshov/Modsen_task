@@ -40,11 +40,11 @@ namespace IdentityServer
                     RequirePkce = true,
                     RedirectUris =
                     {
-                        "http://.../signin-oidc"
+                        "https://localhost:7059/swagger/oauth2-redirect.html"
                     },
                     AllowedCorsOrigins =
                     {
-                        "http://..."
+                        "https://localhost:7059"
                     },
                     PostLogoutRedirectUris =
                     {

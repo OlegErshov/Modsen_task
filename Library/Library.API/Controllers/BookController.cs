@@ -10,6 +10,7 @@ using Library.Application.Queries.BookQueries.GetBookQueries.GetByIdQuerie;
 using Library.Application.Queries.BookQueries.GetBookQueries.GetByISBNQuerie;
 using Library.Application.Queries.BookQueries.GetBooksListQueries;
 using Library.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Update.Internal;
 
@@ -40,6 +41,7 @@ namespace Library.API.Controllers
         }
 
         // GET api/<BookController>/5
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<BookDTO>> Get(Guid id)
         {
@@ -52,7 +54,8 @@ namespace Library.API.Controllers
             return Ok(vw);
         }
 
-        [HttpGet("api/[controller]/isbn/{isbn}")]
+        [Authorize]
+        [HttpGet("isbn/{isbn}")]
         public async Task<ActionResult<BookDTO>> GetByISBN(string isbn)
         {
             var querie = new GetBookByISBNQuerie
@@ -66,6 +69,7 @@ namespace Library.API.Controllers
 
 
         // POST api/<BookController>
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateBookDTO createBookDTO)
         {
@@ -76,6 +80,7 @@ namespace Library.API.Controllers
         }
 
         // PUT api/<BookController>/5
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateBookDTO updateBookDTO)
         {
@@ -95,6 +100,7 @@ namespace Library.API.Controllers
         }
 
         // DELETE api/<BookController>/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {

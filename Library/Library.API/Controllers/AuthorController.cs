@@ -5,6 +5,7 @@ using Library.Application.Commands.AuthorCommands.DeleteCommand;
 using Library.Application.Commands.AuthorCommands.UpdateCommand;
 using Library.Application.Queries.AuthorQueries.GetByIdQuerie;
 using Library.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -29,20 +30,24 @@ namespace Library.API.Controllers
             };
 
             var vm = await Mediator.Send(querie);
-            return Ok(vm);
+
+            return vm is not null ? Ok(vm) : NotFound();
         }
 
         // POST api/<AuthorController>
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] СreateAuthorDTO сreateAuthorDTO)
         {
             var command = _mapper.Map<CreateAuthorCommand>(сreateAuthorDTO);
 
             var authorId = await Mediator.Send(command);
+
             return Ok(authorId);
         }
 
         // PUT api/<AuthorController>/5
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult>  Update(Guid id, [FromBody] Author author)
         {
@@ -58,6 +63,7 @@ namespace Library.API.Controllers
         }
 
         // DELETE api/<AuthorController>/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
