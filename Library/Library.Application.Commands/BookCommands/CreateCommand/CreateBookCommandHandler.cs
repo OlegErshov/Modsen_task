@@ -36,10 +36,19 @@ namespace Library.Application.Commands.BookCommands.CreateCommand
 
             var genre = await _genreRepository.FirstOrDefault(genre => genre.Name == request.GenreReply.Name, cancellationToken);
 
+            if (genre is null)
+            {
+                _logger.LogInformation($"Genre hasn't been founded");
+            }
 
             var author = await _authorRepository.FirstOrDefault(
                 author => (author.FirstName + author.Surname) == 
                 (request.AuthorReply.FirstName + request.AuthorReply.Surname), cancellationToken);
+
+            if (author is null)
+            {
+                _logger.LogInformation($"Author hasn't been founded");
+            }
 
             var book = new Book(Id, request.Title, request.ISBN, request.Description, author.Id, genre.Id);
             await _bookRepository.AddAsync(book, cancellationToken);

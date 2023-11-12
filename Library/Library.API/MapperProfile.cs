@@ -3,9 +3,11 @@ using Library.API.Models.AuthorModels;
 using Library.API.Models.BookModels;
 using Library.API.Models.GenreModels;
 using Library.Application.Commands.AuthorCommands.CreateCommand;
+using Library.Application.Commands.AuthorCommands.UpdateCommand;
 using Library.Application.Commands.BookCommands.CreateCommand;
 using Library.Application.Commands.BookCommands.UpdateCommand;
 using Library.Application.Commands.GenreCommands.CreateCommand;
+using Library.Application.Commands.GenreCommands.UpdateCommand;
 using Library.Application.Queries.AuthorQueries.GetByIdQuerie;
 using Library.Application.Queries.BookQueries.GetBookQueries;
 using Library.Application.Queries.BookQueries.GetBooksListQueries;
@@ -25,6 +27,12 @@ namespace Library.API
                 .ForMember(createAuthorDTO => createAuthorDTO.Surname,
                     opt => opt.MapFrom(authorCommand => authorCommand.Surname)).ReverseMap();
 
+
+            CreateMap<UpdateAuthorDTO, UpdateAuthorCommand>()
+                .ForMember(updateAuthorDTO => updateAuthorDTO.FirstName,
+                    opt => opt.MapFrom(authorCommand => authorCommand.FirstName))
+                .ForMember(updateAuthorDTO => updateAuthorDTO.Surname,
+                    opt => opt.MapFrom(authorCommand => authorCommand.Surname)).ReverseMap();
 
 
             CreateMap<CreateBookDTO, CreateBookCommand>()
@@ -60,6 +68,10 @@ namespace Library.API
 
             CreateMap<CreateGenreDTO, CreateGenreCommand>()
                 .ForMember(createGenreDTO => createGenreDTO.Name,
+                    opt => opt.MapFrom(genreCommand => genreCommand.Name)).ReverseMap();
+
+            CreateMap<UpdateGenreDTO, UpdateGenreCommand>()
+                .ForMember(updateGenreDTO => updateGenreDTO.Name,
                     opt => opt.MapFrom(genreCommand => genreCommand.Name)).ReverseMap();
         }
     }

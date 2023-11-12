@@ -44,9 +44,9 @@ namespace Library.Persistance.Services
             return await _context.Genres.ToListAsync(cancellationToken);
         }
 
-        public Task UpdateAsync(Guid id, Genre entity, CancellationToken cancellationToken)
+        public async Task UpdateAsync(Guid id, Genre entity, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _context.Genres.Update(entity);
         }
 
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken)

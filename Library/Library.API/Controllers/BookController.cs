@@ -41,7 +41,7 @@ namespace Library.API.Controllers
         }
 
         // GET api/<BookController>/5
-        [Authorize]
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<BookDTO>> Get(Guid id)
         {

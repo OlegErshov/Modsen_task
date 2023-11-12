@@ -49,13 +49,13 @@ namespace Library.API.Controllers
         // PUT api/<AuthorController>/5
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
-        public async Task<IActionResult>  Update(Guid id, [FromBody] Author author)
+        public async Task<IActionResult>  Update(Guid id, [FromBody] UpdateAuthorDTO updateAuthorDTO)
         {
             var command = new UpdateAuthorCommand
             {
                 Id = id,
-                FirstName = author.FirstName,
-                Surname = author.Surname
+                FirstName = updateAuthorDTO.FirstName,
+                Surname = updateAuthorDTO.Surname
             };
 
             await Mediator.Send(command);   

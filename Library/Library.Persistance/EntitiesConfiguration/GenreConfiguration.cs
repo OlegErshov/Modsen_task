@@ -17,6 +17,10 @@ namespace Library.Persistance.EntitiesConfiguration
 
             builder.Property(genre => genre.Name).IsRequired()
                                                  .HasMaxLength(100);
+
+            builder.HasMany(genre => genre.Books)
+                   .WithOne(book => book.Genre)
+                   .HasForeignKey(book => book.GenreId);
         }
     }
 }

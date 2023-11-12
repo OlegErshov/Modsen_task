@@ -33,15 +33,25 @@ namespace Library.Application.Commands.BookCommands.UpdateCommand
         {
             var genre = await _genreRepository.FirstOrDefault(genre => genre.Name == request.GenreReply.Name,cancellationToken);
 
+            if (genre is null) {
+                _logger.LogInformation($"Genre hasn't been founded");
+            }
 
             var author = await _authorRepository.FirstOrDefault(
                 author => (author.FirstName + author.Surname) == (request.AuthorReply.FirstName + request.AuthorReply.Surname),cancellationToken);
 
+            if (author is null)
+            {
+                _logger.LogInformation($"Author hasn't been founded");
+            }
+            
 
             var book = new Book(request.Id, request.Title, request.ISBN, request.Description, request.RecieveDate, request.ReturnDate,
-               author,genre);
+               author.Id,genre.Id);
+             
             await _bookRepository.UpdateAsync(book.Id, book,cancellationToken);
             await _bookRepository.SaveChangesAsync(cancellationToken);
+            _logger.LogInformation($"Book {book.Id} has been updated in db");
             return Unit.Value;
         }
     }

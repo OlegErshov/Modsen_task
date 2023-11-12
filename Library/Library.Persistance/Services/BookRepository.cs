@@ -51,9 +51,9 @@ namespace Library.Persistance.Services
            return await _context.Books.ToListAsync(cancellationToken);
         }
 
-        public Task UpdateAsync(Guid id, Book entity, CancellationToken cancellationToken)
+        public async Task UpdateAsync(Guid id, Book entity, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _context.Books.Update(entity);
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)

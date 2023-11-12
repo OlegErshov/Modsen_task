@@ -5,11 +5,13 @@ using Library.Application.Commands.BookCommands.CreateCommand;
 using Library.Application.Commands.BookCommands.DeleteCommand;
 using Library.Application.Commands.GenreCommands.CreateCommand;
 using Library.Application.Commands.GenreCommands.DeleteCommand;
+using Library.Application.Commands.GenreCommands.UpdateCommand;
 using Library.Application.Queries.BookQueries.GetBookQueries;
 using Library.Application.Queries.BookQueries.GetBookQueries.GetByIdQuerie;
 using Library.Application.Queries.BookQueries.GetBooksListQueries;
 using Library.Application.Queries.GenreQueries.GetByIdQuerie;
 using Library.Application.Queries.GenreQueries.GetGenresListQuerie;
+using Library.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,7 +31,6 @@ namespace Library.API.Controllers
         }
 
         // GET: api/<GenreController>
-        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<ActionResult<GenresListReply>> GetList()
         {
@@ -66,9 +67,16 @@ namespace Library.API.Controllers
         // PUT api/<GenreController>/5
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
-        public void Update(int id, [FromBody] string value)
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateGenreDTO newGenre)
         {
+            var command = new UpdateGenreCommand
+            {
+                Id=id,
+                Name = newGenre.Name
+            };
 
+            await Mediator.Send(command);
+            return NoContent();
         }
 
         // DELETE api/<GenreController>/5

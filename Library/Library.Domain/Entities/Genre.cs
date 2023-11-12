@@ -8,6 +8,7 @@ namespace Library.Domain.Entities
 {
     public class Genre : IEntity
     {
+        public Genre() { }
         public Genre(Guid id, string name) {
             Id = id;
             Name = name;

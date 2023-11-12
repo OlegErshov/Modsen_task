@@ -8,7 +8,7 @@ namespace Library.Domain.Entities
 {
     public class Book : IEntity
     {
-
+        public Book() { }
         public Book(Guid id, string title,string isbn, string description, DateTime receiveDate, 
                     DateTime returnDate, Author author, Genre genre) 
         { 

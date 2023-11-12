@@ -8,7 +8,7 @@ namespace Library.Domain.Entities
 {
     public class Author : IEntity
     {
-
+        public Author() { }
         public Author(Guid id,string firstName, string surname) 
         {
             Id = id;
