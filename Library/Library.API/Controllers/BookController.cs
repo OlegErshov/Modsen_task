@@ -54,7 +54,7 @@ namespace Library.API.Controllers
             return Ok(vw);
         }
 
-        [Authorize]
+        
         [HttpGet("isbn/{isbn}")]
         public async Task<ActionResult<BookDTO>> GetByISBN(string isbn)
         {
