@@ -4,10 +4,12 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace IdentityServer.Migrations
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
+namespace IdentityServer.Services.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class change_project_structure : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -157,6 +159,33 @@ namespace IdentityServer.Migrations
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Role",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "1", "testStamp", "Admin", "ADMIN" },
+                    { "2", "testStamp2", "User", "USER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "b391dd4d-fbda-46ed-a300-44d14facac99", 0, "f90a708f-f555-42b1-9b23-bd10f13980f7", null, false, "Oleg", false, null, null, "OLEZA", "AQAAAAEAACcQAAAAEOE5cQyJEFkp2C9mip40Sp1Xv6oWmw5lS/DanG84dgbFvE198QvnpERv3B1K1v1C8g==", null, false, "TQ437PFELCMX76YQL7XX66KHZUS2MRYG", "Ershov", false, "oleza" },
+                    { "e0dd19cf-ab64-40cf-adb3-2ea3bf5cb9cf", 0, "2edbdd23-b51f-4a36-a5c3-f046e3d068ab", null, false, "Tomas", false, null, null, "OSTRIEKOZEROK", "AQAAAAEAACcQAAAAEPW/RDjSyUSGj5CVaa3nKdnb+fQBUoDeIwN5higGf8JMl7ik9pqyat3v60PTYzND8w==", null, false, "MBWOCQLR2CMJH63BYU6SDWSAPXMTEYIC", "Shelby", false, "ostrieKozerok" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserRole",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { "2", "b391dd4d-fbda-46ed-a300-44d14facac99" },
+                    { "1", "e0dd19cf-ab64-40cf-adb3-2ea3bf5cb9cf" }
                 });
 
             migrationBuilder.CreateIndex(

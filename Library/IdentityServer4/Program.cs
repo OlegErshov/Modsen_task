@@ -1,10 +1,10 @@
 using IdentityServer;
-using IdentityServer.Data;
 using IdentityServer.Domain.Interfaces;
 using IdentityServer.Domain.Models;
-using IdentityServer.Models;
 using IdentityServer.Services;
-using IdentityServer4.Models;
+using IdentityServer.Services.Data;
+using IdentityServer.Services.Models;
+using IdentityServer.Services.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.EntityFrameworkCore;

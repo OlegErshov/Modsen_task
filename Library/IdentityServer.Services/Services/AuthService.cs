@@ -1,6 +1,7 @@
 ﻿using IdentityServer.Domain.Interfaces;
 using IdentityServer.Domain.Models;
 using IdentityServer.Models;
+using IdentityServer.Services.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -8,7 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace IdentityServer.Services
+namespace IdentityServer.Services.Services
 {
     public class AuthService : IAuthService
     {
@@ -88,7 +89,6 @@ namespace IdentityServer.Services
                     return false;
                 }
             }
-
             return true;
         }
 

@@ -10,8 +10,6 @@ namespace IdentityServer.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authenticationService;
-        
-
         public AuthController(IAuthService authenticationService)
         {
             _authenticationService = authenticationService;
@@ -30,6 +28,5 @@ namespace IdentityServer.Controllers
             var response = await _authenticationService.RegisterAsync(user);
             return response.Success ? response : BadRequest(response);
         }
-
     }
 }

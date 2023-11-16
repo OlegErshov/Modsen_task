@@ -1,14 +1,19 @@
 ﻿using IdentityServer.Models;
+using IdentityServer.Services.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdentityServer.Data
+namespace IdentityServer.Services.Data
 {
     public class AuthDbContext : IdentityDbContext<AppUser>
     {
         public AuthDbContext(DbContextOptions<AuthDbContext> options) 
-            : base(options) { }
+            : base(options) 
+        { 
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
+        }
 
         
         protected override void OnModelCreating(ModelBuilder builder)
