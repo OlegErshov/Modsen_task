@@ -49,12 +49,21 @@ namespace Library.Application.Commands.BookCommands.CreateCommand
             {
                 _logger.LogInformation($"Author hasn't been founded");
             }
+            var isBookAlreadyExsist = await _bookRepository.FirstOrDefault(
+               book => book.Title == request.Title, cancellationToken);
+            if (isBookAlreadyExsist is not null)
+            {
+                _logger.LogInformation($"this book with name {request.Title} is already exist");
+            }
+            else
+            {
+                var book = new Book(Id, request.Title, request.ISBN, request.Description, author.Id, genre.Id);
+                await _bookRepository.AddAsync(book, cancellationToken);
+                await _bookRepository.SaveChangesAsync(cancellationToken);
 
-            var book = new Book(Id, request.Title, request.ISBN, request.Description, author.Id, genre.Id);
-            await _bookRepository.AddAsync(book, cancellationToken);
-            await _bookRepository.SaveChangesAsync(cancellationToken);
-
-            _logger.LogInformation($"Book {book.Id} has been saved to db");
+                _logger.LogInformation($"Book {book.Id} has been saved to db");
+            }
+           
             return Unit.Value;
         }
     }

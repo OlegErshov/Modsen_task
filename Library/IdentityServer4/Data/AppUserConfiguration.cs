@@ -10,7 +10,5 @@ namespace IdentityServer.Data
         {
             builder.HasKey(x  => x.Id);
         }
-        
-
     }
 }

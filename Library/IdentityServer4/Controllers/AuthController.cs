@@ -12,7 +12,6 @@ namespace IdentityServer.Controllers
         private readonly IAuthService _authenticationService;
         
 
-
         public AuthController(IAuthService authenticationService)
         {
             _authenticationService = authenticationService;

@@ -23,18 +23,17 @@ namespace Library.Persistance.Services
             await _context.Authors.AddAsync(entity, cancellationToken);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public  Task Delete(Guid id)
         {
-            var author = _context.Authors.FindAsync(id).Result;
-            _context.Authors.Remove(author);
+            var author = new Author { Id = id };
+            
+            return Task.FromResult(_context.Authors.Remove(author));
         }
 
         public async Task<Author> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             IQueryable<Author>? query = _context.Authors.AsQueryable();
-
             query = query.Where(el => el.Id == id);
-
             return await query.FirstOrDefaultAsync();
         }
 
@@ -43,9 +42,9 @@ namespace Library.Persistance.Services
             return await _context.Authors.ToListAsync(cancellationToken);
         }
 
-        public async Task UpdateAsync(Guid id, Author entity, CancellationToken cancellationToken)
+        public  Author Update(Author entity)
         {
-            _context.Authors.Update(entity);
+           return _context.Authors.Update(entity).Entity;
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
@@ -58,5 +57,4 @@ namespace Library.Persistance.Services
             return await _context.Authors.FirstOrDefaultAsync(filter, cancellationToken);
         }
     }
-
 }

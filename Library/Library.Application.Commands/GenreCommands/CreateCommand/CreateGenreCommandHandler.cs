@@ -26,13 +26,18 @@ namespace Library.Application.Commands.GenreCommands.CreateCommand
         public async Task<Unit> Handle(CreateGenreCommand request, CancellationToken cancellationToken)
         {
             var Id = Guid.NewGuid();
-
             var genre = new Genre(Id, request.Name);
-
-            await _genreRepository.AddAsync(genre, cancellationToken);
-            await _genreRepository.SaveChangesAsync(cancellationToken);
-
-            _logger.LogInformation($"Genre {genre.Id} has been saved to db");
+            var genreIsAlredyExist = await _genreRepository.FirstOrDefault(genre => genre.Name == request.Name, cancellationToken);
+            if(genreIsAlredyExist is not null)
+            {
+                _logger.LogInformation($"This genre with name {genre.Name} is already exist");
+            }
+            else
+            { 
+                await _genreRepository.AddAsync(genre, cancellationToken);
+                await _genreRepository.SaveChangesAsync(cancellationToken);
+                _logger.LogInformation($"Genre {genre.Id} has been saved to db");
+            }
             return Unit.Value;
         }
     }

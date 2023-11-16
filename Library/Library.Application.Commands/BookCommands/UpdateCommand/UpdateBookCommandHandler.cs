@@ -44,14 +44,20 @@ namespace Library.Application.Commands.BookCommands.UpdateCommand
             {
                 _logger.LogInformation($"Author hasn't been founded");
             }
-            
 
-            var book = new Book(request.Id, request.Title, request.ISBN, request.Description, request.RecieveDate, request.ReturnDate,
-               author.Id,genre.Id);
-             
-            await _bookRepository.UpdateAsync(book.Id, book,cancellationToken);
-            await _bookRepository.SaveChangesAsync(cancellationToken);
-            _logger.LogInformation($"Book {book.Id} has been updated in db");
+            var updateBook = await _bookRepository.FirstOrDefault(book => book.Id == request.Id, cancellationToken);
+            if (updateBook is null)
+            {
+                _logger.LogInformation($"Book with id: {request.Id} doesn't exist in db");
+            }
+            else
+            {
+                var book = new Book(request.Id, request.Title, request.ISBN, request.Description, request.RecieveDate, 
+                        request.ReturnDate, author.Id, genre.Id);
+                _bookRepository.Update(book);
+                await _bookRepository.SaveChangesAsync(cancellationToken);
+                _logger.LogInformation($"Book {book.Id} has been updated in db");
+            }
             return Unit.Value;
         }
     }

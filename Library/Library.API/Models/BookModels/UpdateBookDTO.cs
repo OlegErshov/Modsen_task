@@ -15,7 +15,5 @@ namespace Library.API.Models.BookModels
         public DateTime ReturnDate { get; set; }
         public AuthorReply AuthorReply { get; set; }
         public GenreReply GenreReply { get; set; }
-
-        
     }
 }

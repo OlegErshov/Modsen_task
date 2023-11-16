@@ -19,9 +19,17 @@ namespace Library.Application.Commands.GenreCommands.UpdateCommand
 
         public async Task<Unit> Handle(UpdateGenreCommand request, CancellationToken cancellationToken)
         {
-            var genre = new Genre(request.Id, request.Name);
-            await _genreRepository.UpdateAsync(genre.Id, genre, cancellationToken);
-            await _genreRepository.SaveChangesAsync(cancellationToken);
+            var updateGenre = await _genreRepository.FirstOrDefault(genre => genre.Id == request.Id, cancellationToken);
+            if (updateGenre is null)
+            {
+                _logger.LogInformation($"this genre with id {request.Id} doesn't exist in db");
+            }
+            else
+            {
+                var genre = new Genre(request.Id, request.Name);
+                _genreRepository.Update(genre);
+                await _genreRepository.SaveChangesAsync(cancellationToken);
+            }
             return Unit.Value;
         }
     }

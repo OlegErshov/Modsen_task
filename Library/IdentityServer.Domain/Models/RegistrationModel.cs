@@ -22,6 +22,6 @@ namespace IdentityServer.Domain.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        public IEnumerable<string> Roles { get; set; }
+        public List<string> Roles { get; set; }
     }
 }

@@ -36,7 +36,6 @@ namespace IdentityServer.Services
                 var token = GetToken(authClaims);
                 return new Response(true, "User authorized successfully!", token);
             }
-
             return new Response("Invalid login or password");
         }
 
@@ -48,12 +47,7 @@ namespace IdentityServer.Services
             {
                 return new Response("There are user with the same login");
             }
-
-            foreach (var role in user.Roles)
-            {
-                role.ToLower();
-            }
-
+            user.Roles.ConvertAll(p => p.ToLower());
             AppUser applicationUser = new AppUser()
             {
                 SecurityStamp = Guid.NewGuid().ToString(),

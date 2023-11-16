@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,18 +23,16 @@ namespace Library.Persistance.Services
             await _context.Books.AddAsync(entity);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public  Task Delete(Guid id)
         {
-            var book = _context.Books.FindAsync(id).Result;
-            _context.Books.Remove(book);
+            var book = new Book { Id = id };
+            return Task.FromResult(_context.Books.Remove(book));
         }
 
         public async Task<Book> GetBookByISBN(string isbn,CancellationToken cancellationToken)
         {
             IQueryable<Book>? query = _context.Books.AsQueryable();
-
             query = query.Where(el => el.ISBN == isbn);
-
             return await query.FirstOrDefaultAsync();
         }
 
@@ -51,14 +50,18 @@ namespace Library.Persistance.Services
            return await _context.Books.ToListAsync(cancellationToken);
         }
 
-        public async Task UpdateAsync(Guid id, Book entity, CancellationToken cancellationToken)
+        public Book Update(Book entity)
         {
-            _context.Books.Update(entity);
+            return _context.Books.Update(entity).Entity;
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             return await _context.SaveChangesAsync(cancellationToken);
+        }
+        public async Task<Book> FirstOrDefault(Expression<Func<Book, bool>> filter, CancellationToken cancellationToken)
+        {
+            return await _context.Books.FirstOrDefaultAsync(filter, cancellationToken);
         }
     }
 }

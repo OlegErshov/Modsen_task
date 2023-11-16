@@ -24,9 +24,17 @@ namespace Library.Application.Commands.AuthorCommands.DeleteCommand
 
         public async Task<Unit> Handle(DeleteAuthorCommand request, CancellationToken cancellationToken)
         {
-            await _authorRepository.DeleteAsync(request.Id);
-            await _authorRepository.SaveChangesAsync(cancellationToken);
-            _logger.LogInformation($"Author {request.Id} has been deleted from db");
+            var deleteAuthor = await _authorRepository.FirstOrDefault(author => author.Id == request.Id, cancellationToken);
+            if (deleteAuthor is  null)
+            {
+                _logger.LogInformation($"this Author with id {request.Id} doesn't exist in db");
+            }
+            else
+            {
+                await _authorRepository.Delete(request.Id);
+                await _authorRepository.SaveChangesAsync(cancellationToken);
+                _logger.LogInformation($"Author {request.Id} has been deleted from db");
+            }
             return Unit.Value;
         }
 

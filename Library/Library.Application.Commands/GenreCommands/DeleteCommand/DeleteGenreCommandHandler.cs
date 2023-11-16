@@ -24,10 +24,17 @@ namespace Library.Application.Commands.GenreCommands.DeleteCommand
 
         public async Task<Unit> Handle(DeleteGenreCommand request, CancellationToken cancellationToken)
         {
-            await _genreRepository.DeleteAsync(request.Id);
-            await _genreRepository.SaveChangesAsync(cancellationToken);
-
-            _logger.LogInformation($"Genre {request.Id} has been deleted from db");
+            var deleteGenre = await _genreRepository.FirstOrDefault(genre => genre.Id == request.Id, cancellationToken);
+            if (deleteGenre is null)
+            {
+                _logger.LogInformation($"this genre with id {request.Id} doesn't exist in db");
+            }
+            else
+            {
+                await _genreRepository.Delete(request.Id);
+                await _genreRepository.SaveChangesAsync(cancellationToken);
+                _logger.LogInformation($"Genre {request.Id} has been deleted from db");
+            }
             return Unit.Value;
         }
     }

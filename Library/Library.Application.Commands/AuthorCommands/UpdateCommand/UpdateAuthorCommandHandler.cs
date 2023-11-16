@@ -24,12 +24,18 @@ namespace Library.Application.Commands.AuthorCommands.UpdateCommand
 
         public async Task<Unit> Handle(UpdateAuthorCommand request, CancellationToken cancellationToken)
         {
-            var id = request.Id;
-            var author = new Author(id, request.FirstName, request.Surname);
-
-            await _authorRepository.UpdateAsync(id, author, cancellationToken);
-            await _authorRepository.SaveChangesAsync(cancellationToken);
-            _logger.LogInformation($"Author {request.Id} has been updated from db");
+            var updateAuthor = await _authorRepository.FirstOrDefault(author => author.Id == request.Id, cancellationToken);
+            if (updateAuthor is null)
+            {
+                _logger.LogInformation($"this Author with id {request.Id} doesn't exist in db");
+            }
+            else
+            {
+                var author = new Author(request.Id, request.FirstName, request.Surname);
+                _authorRepository.Update(author);
+                await _authorRepository.SaveChangesAsync(cancellationToken);
+                _logger.LogInformation($"Author {request.Id} has been updated from db");
+            }
             return Unit.Value;
         }
     }
