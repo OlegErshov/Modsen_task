@@ -27,8 +27,7 @@ builder.Services.AddTransient<IAppDbContext, AppDbContext>()
                 .AddTransient<IGenreRepository, GenreRepository>()
                 .AddTransient<IAuthorRepository, AuthorRepository>()
                 .AddAutoMapper(typeof(Library.Application.Queries.MapperProfile),
-                               typeof(Library.Application.Commands.MapperProfile),
-                               typeof(Library.API.MapperProfile));
+                               typeof(Library.Application.Commands.MapperProfile));
 
 
 

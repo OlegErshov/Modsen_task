@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using Library.API.Models.AuthorModels;
 using Library.Application.Commands.AuthorCommands.CreateCommand;
 using Library.Application.Commands.AuthorCommands.DeleteCommand;
 using Library.Application.Commands.AuthorCommands.UpdateCommand;
 using Library.Application.Queries.AuthorQueries.GetByIdQuerie;
-using Library.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,12 +35,13 @@ namespace Library.API.Controllers
         // POST api/<AuthorController>
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create([FromBody] СreateAuthorDTO сreateAuthorDTO)
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateAuthorDTO сreateAuthorDTO)
         {
-            var command = _mapper.Map<CreateAuthorCommand>(сreateAuthorDTO);
-
+            var command = new CreateAuthorCommand
+            {
+                createAuthorDTO = сreateAuthorDTO
+            };
             var authorId = await Mediator.Send(command);
-
             return Ok(authorId);
         }
 
@@ -53,11 +52,8 @@ namespace Library.API.Controllers
         {
             var command = new UpdateAuthorCommand
             {
-                Id = id,
-                FirstName = updateAuthorDTO.FirstName,
-                Surname = updateAuthorDTO.Surname
+                updateAuthorDTO = updateAuthorDTO
             };
-
             await Mediator.Send(command);   
             return NoContent();
         }

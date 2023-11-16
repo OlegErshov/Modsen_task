@@ -34,7 +34,8 @@ namespace Library.Application.Commands.BookCommands.CreateCommand
         {
             var Id = Guid.NewGuid();
 
-            var genre = await _genreRepository.FirstOrDefault(genre => genre.Name == request.GenreReply.Name, cancellationToken);
+            var genre = await _genreRepository.FirstOrDefault(genre => genre.Name == request.createBookDTO.GenreReply.Name,
+                    cancellationToken);
 
             if (genre is null)
             {
@@ -43,21 +44,22 @@ namespace Library.Application.Commands.BookCommands.CreateCommand
 
             var author = await _authorRepository.FirstOrDefault(
                 author => (author.FirstName + author.Surname) == 
-                (request.AuthorReply.FirstName + request.AuthorReply.Surname), cancellationToken);
+                (request.createBookDTO.AuthorReply.FirstName + request.createBookDTO.AuthorReply.Surname), cancellationToken);
 
             if (author is null)
             {
                 _logger.LogInformation($"Author hasn't been founded");
             }
             var isBookAlreadyExsist = await _bookRepository.FirstOrDefault(
-               book => book.Title == request.Title, cancellationToken);
+               book => book.Title == request.createBookDTO.Title, cancellationToken);
             if (isBookAlreadyExsist is not null)
             {
-                _logger.LogInformation($"this book with name {request.Title} is already exist");
+                _logger.LogInformation($"this book with name {request.createBookDTO.Title} is already exist");
             }
             else
             {
-                var book = new Book(Id, request.Title, request.ISBN, request.Description, author.Id, genre.Id);
+                var book = new Book(Id, request.createBookDTO.Title, request.createBookDTO.ISBN,
+                    request.createBookDTO.Description, author.Id, genre.Id);
                 await _bookRepository.AddAsync(book, cancellationToken);
                 await _bookRepository.SaveChangesAsync(cancellationToken);
 

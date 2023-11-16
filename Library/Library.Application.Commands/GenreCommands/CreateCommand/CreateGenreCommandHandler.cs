@@ -26,8 +26,9 @@ namespace Library.Application.Commands.GenreCommands.CreateCommand
         public async Task<Unit> Handle(CreateGenreCommand request, CancellationToken cancellationToken)
         {
             var Id = Guid.NewGuid();
-            var genre = new Genre(Id, request.Name);
-            var genreIsAlredyExist = await _genreRepository.FirstOrDefault(genre => genre.Name == request.Name, cancellationToken);
+            var genre = new Genre(Id, request.createGenreDTO.Name);
+            var genreIsAlredyExist = await _genreRepository.FirstOrDefault(genre => genre.Name == request.createGenreDTO.Name, 
+                cancellationToken);
             if(genreIsAlredyExist is not null)
             {
                 _logger.LogInformation($"This genre with name {genre.Name} is already exist");

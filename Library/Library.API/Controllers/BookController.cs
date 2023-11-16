@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using Library.API.Models.AuthorModels;
-using Library.API.Models.BookModels;
-using Library.Application.Commands.AuthorCommands.CreateCommand;
 using Library.Application.Commands.BookCommands.CreateCommand;
 using Library.Application.Commands.BookCommands.DeleteCommand;
+using Library.Application.Commands.BookCommands.Models;
 using Library.Application.Commands.BookCommands.UpdateCommand;
 using Library.Application.Queries.BookQueries.GetBookQueries;
 using Library.Application.Queries.BookQueries.GetBookQueries.GetByIdQuerie;
@@ -73,7 +71,10 @@ namespace Library.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateBookDTO createBookDTO)
         {
-            var command = _mapper.Map<CreateBookCommand>(createBookDTO);
+            var command = new CreateBookCommand
+            {
+                createBookDTO = createBookDTO
+            };
 
             var bookId = await Mediator.Send(command);
             return Ok(bookId);
@@ -86,14 +87,7 @@ namespace Library.API.Controllers
         {
             var command = new UpdateBookCommand
             {
-                Id = id,
-                Title = updateBookDTO.Title,
-                Description = updateBookDTO.Description,
-                ISBN = updateBookDTO.ISBN,
-                RecieveDate = updateBookDTO.RecieveDate,
-                ReturnDate = updateBookDTO.ReturnDate,
-                AuthorReply = updateBookDTO.AuthorReply,
-                GenreReply = updateBookDTO.GenreReply
+                updateBookDTO = updateBookDTO
             };
             await Mediator.Send(command);
             return NoContent();

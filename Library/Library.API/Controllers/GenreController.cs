@@ -1,17 +1,9 @@
 ﻿using AutoMapper;
-using Library.API.Models.BookModels;
-using Library.API.Models.GenreModels;
-using Library.Application.Commands.BookCommands.CreateCommand;
-using Library.Application.Commands.BookCommands.DeleteCommand;
 using Library.Application.Commands.GenreCommands.CreateCommand;
 using Library.Application.Commands.GenreCommands.DeleteCommand;
 using Library.Application.Commands.GenreCommands.UpdateCommand;
-using Library.Application.Queries.BookQueries.GetBookQueries;
-using Library.Application.Queries.BookQueries.GetBookQueries.GetByIdQuerie;
-using Library.Application.Queries.BookQueries.GetBooksListQueries;
 using Library.Application.Queries.GenreQueries.GetByIdQuerie;
 using Library.Application.Queries.GenreQueries.GetGenresListQuerie;
-using Library.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -58,8 +50,10 @@ namespace Library.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateGenreDTO createGenreDTO)
         {
-            var command = _mapper.Map<CreateGenreCommand>(createGenreDTO);
-
+            var command = new CreateGenreCommand
+            {
+                createGenreDTO = createGenreDTO
+            };
             var genreId = await Mediator.Send(command);
             return Ok(genreId);
         }
@@ -71,8 +65,7 @@ namespace Library.API.Controllers
         {
             var command = new UpdateGenreCommand
             {
-                Id=id,
-                Name = newGenre.Name
+                updateGenreDTO = newGenre
             };
 
             await Mediator.Send(command);

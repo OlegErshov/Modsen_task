@@ -1,13 +1,13 @@
-﻿using AutoMapper;
-using Library.Application.Commands.BookCommands.CreateCommand;
-using Library.Application.Commands.BookCommands.Models;
-using Library.Domain.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Library.API.Models.BookModels
+namespace Library.Application.Commands.BookCommands.Models
 {
-    public class CreateBookDTO 
+    public class CreateBookDTO
     {
-
         public string Title { get; set; }
         public string ISBN { get; set; }
         public string Description { get; set; }

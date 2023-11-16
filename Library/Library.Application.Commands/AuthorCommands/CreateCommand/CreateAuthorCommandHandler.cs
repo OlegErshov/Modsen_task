@@ -27,14 +27,15 @@ namespace Library.Application.Commands.AuthorCommands.CreateCommand
         {
             var id = Guid.NewGuid();
             var authorIsAlreadyExsist = await _authorRepository.FirstOrDefault(author => (author.FirstName + author.Surname) ==
-                (request.FirstName + request.Surname), cancellationToken);
+                (request.createAuthorDTO.FirstName + request.createAuthorDTO.Surname), cancellationToken);
             if(authorIsAlreadyExsist is not  null)
             {
-                _logger.LogInformation($"this Author with name {request.FirstName} {request.Surname} is already exist");
+                _logger.LogInformation($"this Author with name {request.createAuthorDTO.FirstName} " +
+                    $"{request.createAuthorDTO.Surname} is already exist");
             }
             else
             {
-                var author = new Author(id, request.FirstName, request.Surname);
+                var author = new Author(id, request.createAuthorDTO.FirstName, request.createAuthorDTO.Surname);
                 await _authorRepository.AddAsync(author, cancellationToken);
                 await _authorRepository.SaveChangesAsync(cancellationToken);
                 _logger.LogInformation($"Author {author.Id} has been saved to db");

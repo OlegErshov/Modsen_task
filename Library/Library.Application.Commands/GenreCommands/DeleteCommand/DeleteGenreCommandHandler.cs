@@ -1,13 +1,6 @@
-﻿using Library.Application.Commands.BookCommands.DeleteCommand;
-using Library.Domain.Interfaces;
-using Library.Persistance.Services;
+﻿using Library.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Application.Commands.GenreCommands.DeleteCommand
 {

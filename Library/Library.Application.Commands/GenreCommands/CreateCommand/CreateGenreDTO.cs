@@ -1,5 +1,4 @@
-﻿using MediatR;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Library.Application.Commands.GenreCommands.CreateCommand
 {
-    public class CreateGenreCommand : IRequest<Unit>
+    public class CreateGenreDTO
     {
-        public CreateGenreDTO createGenreDTO { get; set; }
+        public string Name { get; set; }
     }
 }
