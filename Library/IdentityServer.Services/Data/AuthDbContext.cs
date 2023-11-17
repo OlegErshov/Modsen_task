@@ -1,5 +1,4 @@
-﻿using IdentityServer.Models;
-using IdentityServer.Services.Models;
+﻿using IdentityServer.Services.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +14,6 @@ namespace IdentityServer.Services.Data
             Database.EnsureCreated();
         }
 
-        
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -75,9 +73,7 @@ namespace IdentityServer.Services.Data
             builder.Entity<IdentityUserRole<string>>().HasData(
 
                 new IdentityUserRole<string> { UserId = "e0dd19cf-ab64-40cf-adb3-2ea3bf5cb9cf", RoleId = "1" },
-
                 new IdentityUserRole<string> { UserId = "b391dd4d-fbda-46ed-a300-44d14facac99", RoleId = "2" }
-
                 );
 
             builder.ApplyConfiguration(new AppUserConfiguration());

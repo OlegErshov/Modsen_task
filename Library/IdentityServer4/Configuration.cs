@@ -59,7 +59,5 @@ namespace IdentityServer
                     AllowAccessTokensViaBrowser = true
                 }
             };
-           
-      
     }
 }

@@ -1,11 +1,6 @@
 ﻿using Library.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Persistance.EntitiesConfiguration
 {
@@ -16,8 +11,6 @@ namespace Library.Persistance.EntitiesConfiguration
             builder.HasKey(book => book.Id);
 
             builder.HasIndex(book => book.ISBN).IsUnique();
-
-
 
             builder.Property(book => book.Title).IsRequired()
                                                 .HasMaxLength(255);

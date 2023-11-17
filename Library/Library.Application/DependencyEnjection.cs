@@ -1,8 +1,6 @@
 ﻿using Library.Application.Commands;
 using Library.Application.Queries;
-
 using Microsoft.Extensions.DependencyInjection;
-
 
 namespace Library.Application
 {
@@ -16,7 +14,6 @@ namespace Library.Application
                     ApplicationCommandProvider.CommandsAssembly,
                     ApplicationQueryProvider.QueryAssembly);
             });
-                
         }
     }
 }

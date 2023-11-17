@@ -5,11 +5,7 @@ using Library.Application.Queries.BookQueries.GetBooksListQueries;
 using Library.Application.Queries.GenreQueries.GetByIdQuerie;
 using Library.Application.Queries.GenreQueries.GetGenresListQuerie;
 using Library.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Library.Application.Queries
 {
@@ -39,8 +35,6 @@ namespace Library.Application.Queries
 
             CreateMap<IEnumerable<Genre>, IList<GenresListDTO>>();
 
-
-            
             CreateMap<Book, BookDTO>();
 
             CreateMap<Book, BooksListDTO>()

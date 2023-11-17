@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Library.Application.Queries.GenreQueries.GetByIdQuerie;
-using Library.Domain.Entities;
 using Library.Domain.Interfaces;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 
@@ -29,6 +25,7 @@ namespace Library.Application.Queries.GenreQueries.GetGenresListQuerie
             var genres = await _genreRepository.GetListAsync(cancellationToken);
 
             IList<GenresListDTO> genresDTO = new List<GenresListDTO>();
+
             foreach (var item in genres)
             {
                 genresDTO.Add(_mapper.Map<GenresListDTO>(item));

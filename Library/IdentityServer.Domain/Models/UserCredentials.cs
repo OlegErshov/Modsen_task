@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 
 namespace IdentityServer.Domain.Models
@@ -12,6 +11,5 @@ namespace IdentityServer.Domain.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
     }
 }

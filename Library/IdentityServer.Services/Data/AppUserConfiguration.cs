@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using IdentityServer.Models;
 using IdentityServer.Services.Models;
 
 namespace IdentityServer.Services.Data

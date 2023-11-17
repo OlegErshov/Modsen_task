@@ -1,10 +1,6 @@
 ﻿using Library.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Library.Domain.Interfaces
 {
@@ -13,9 +9,9 @@ namespace Library.Domain.Interfaces
         Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken);
         Task<IEnumerable<T>> GetListAsync(CancellationToken cancellationToken);
         Task AddAsync(T entity, CancellationToken cancellationToken);
-        T Update(T entity);
-        Task Delete(Guid id);
+        Task<bool> UpdateAsync(T entity,CancellationToken cancellationToken);
+        Task<bool> DeleteAsync(T entity,CancellationToken cancellationToken);
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
-        Task<T> FirstOrDefault(Expression<Func<T, bool>> filter, CancellationToken cancellationToken);
+        Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken);
     }
 }

@@ -17,16 +17,16 @@ namespace Library.Application.Commands.BookCommands.DeleteCommand
 
         public async Task<Unit> Handle(DeleteBookCommand request, CancellationToken cancellationToken)
         {
-            var deleteBook = await _bookRepository.FirstOrDefault(
-                book => book.Id == request.Id, cancellationToken);
+            var deleteBook = await _bookRepository.FirstOrDefaultAsync(book => book.Id == request.Id, 
+                    cancellationToken);
+
             if(deleteBook is null)
             {
                 _logger.LogInformation($"Book with id: {request.Id} hasn't found");
             }
             else
             {
-                await _bookRepository.Delete(request.Id);
-                await _bookRepository.SaveChangesAsync(cancellationToken);
+                await _bookRepository.DeleteAsync(deleteBook,cancellationToken);
                 _logger.LogInformation($"Book {request.Id} has been deleted from db");
             }
             return Unit.Value;

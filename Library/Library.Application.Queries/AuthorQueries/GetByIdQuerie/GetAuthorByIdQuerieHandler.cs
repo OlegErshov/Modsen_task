@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Library.Domain.Entities;
 using Library.Domain.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;

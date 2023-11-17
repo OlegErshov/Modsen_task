@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using IdentityServer.Domain.Interfaces;
+﻿using IdentityServer.Domain.Interfaces;
 using IdentityServer.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 

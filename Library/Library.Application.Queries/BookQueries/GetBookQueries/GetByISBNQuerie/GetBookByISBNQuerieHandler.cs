@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using Library.Application.Commands.BookCommands.Models;
 using Library.Application.Queries.BookQueries.GetBookQueries.GetByIdQuerie;
-using Library.Domain.Entities;
 using Library.Domain.Interfaces;
-using Library.Persistance.Services;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -54,7 +52,6 @@ namespace Library.Application.Queries.BookQueries.GetBookQueries.GetByISBNQuerie
             var genreReply = _mapper.Map<GenreReply>(genre);
             var authorReply = _mapper.Map<AuthorReply>(author);
 
-
             return new BookDTO
             {
                 Id = book.Id,
@@ -65,9 +62,7 @@ namespace Library.Application.Queries.BookQueries.GetBookQueries.GetByISBNQuerie
                 ReturnDate = book.ReturnDate,
                 GenreReply = genreReply,
                 AuthorReply = authorReply
-            };
-
-            
+            }; 
         }
     }
 }

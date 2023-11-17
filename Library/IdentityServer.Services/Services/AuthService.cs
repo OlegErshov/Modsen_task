@@ -1,6 +1,5 @@
 ﻿using IdentityServer.Domain.Interfaces;
 using IdentityServer.Domain.Models;
-using IdentityServer.Models;
 using IdentityServer.Services.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -62,7 +61,6 @@ namespace IdentityServer.Services.Services
             {
                 return new Response("Invalid role");
             }
-           
 
             var result = await _userManager.CreateAsync(applicationUser, user.Password);
 
@@ -72,7 +70,6 @@ namespace IdentityServer.Services.Services
             }
 
             await _userManager.AddToRolesAsync(applicationUser, user.Roles);
-
 
             var authClaims = GenerateClaims(user.Roles);
             var token = GetToken(authClaims);

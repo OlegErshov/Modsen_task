@@ -1,19 +1,10 @@
 ﻿using AutoMapper;
 using Library.Application.Commands.BookCommands.Models;
-using Library.Application.Queries.BookQueries.GetBookQueries;
-using Library.Application.Queries.BookQueries.GetBookQueries.GetByIdQuerie;
-using Library.Application.Queries.GenreQueries.GetGenresListQuerie;
 using Library.Domain.Entities;
 using Library.Domain.Interfaces;
-using Library.Persistance.Services;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+
 
 namespace Library.Application.Queries.BookQueries.GetBooksListQueries
 {
@@ -42,6 +33,7 @@ namespace Library.Application.Queries.BookQueries.GetBooksListQueries
             var books = await _bookRepository.GetListAsync(cancellationToken);
 
             IList<BooksListDTO> booksDTO = new List<BooksListDTO>();
+
             foreach (var item in books)
             {
 
@@ -51,6 +43,7 @@ namespace Library.Application.Queries.BookQueries.GetBooksListQueries
             _logger.LogInformation(books is not null
               ? $"Books has been retrieved from db"
             : $"Failed to get all books from db");
+
             return new BooksListReply { Books = booksDTO };
         }
 

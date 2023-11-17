@@ -34,7 +34,7 @@ namespace Library.Application.Commands.BookCommands.CreateCommand
         {
             var Id = Guid.NewGuid();
 
-            var genre = await _genreRepository.FirstOrDefault(genre => genre.Name == request.createBookDTO.GenreReply.Name,
+            var genre = await _genreRepository.FirstOrDefaultAsync(genre => genre.Name == request.createBookDTO.GenreReply.Name,
                     cancellationToken);
 
             if (genre is null)
@@ -42,7 +42,7 @@ namespace Library.Application.Commands.BookCommands.CreateCommand
                 _logger.LogInformation($"Genre hasn't been founded");
             }
 
-            var author = await _authorRepository.FirstOrDefault(
+            var author = await _authorRepository.FirstOrDefaultAsync(
                 author => (author.FirstName + author.Surname) == 
                 (request.createBookDTO.AuthorReply.FirstName + request.createBookDTO.AuthorReply.Surname), cancellationToken);
 
@@ -50,8 +50,10 @@ namespace Library.Application.Commands.BookCommands.CreateCommand
             {
                 _logger.LogInformation($"Author hasn't been founded");
             }
-            var isBookAlreadyExsist = await _bookRepository.FirstOrDefault(
+
+            var isBookAlreadyExsist = await _bookRepository.FirstOrDefaultAsync(
                book => book.Title == request.createBookDTO.Title, cancellationToken);
+
             if (isBookAlreadyExsist is not null)
             {
                 _logger.LogInformation($"this book with name {request.createBookDTO.Title} is already exist");
@@ -60,12 +62,12 @@ namespace Library.Application.Commands.BookCommands.CreateCommand
             {
                 var book = new Book(Id, request.createBookDTO.Title, request.createBookDTO.ISBN,
                     request.createBookDTO.Description, author.Id, genre.Id);
+
                 await _bookRepository.AddAsync(book, cancellationToken);
                 await _bookRepository.SaveChangesAsync(cancellationToken);
 
                 _logger.LogInformation($"Book {book.Id} has been saved to db");
             }
-           
             return Unit.Value;
         }
     }

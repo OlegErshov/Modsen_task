@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using Library.Application.Commands.BookCommands.Models;
-using Library.Domain.Entities;
-
+﻿using Library.Application.Commands.BookCommands.Models;
 
 
 namespace Library.Application.Queries.BookQueries.GetBooksListQueries
@@ -13,7 +10,5 @@ namespace Library.Application.Queries.BookQueries.GetBooksListQueries
         public string Description { get; set; }
         public AuthorReply AuthorReply { get; set; }
         public GenreReply GenreReply { get; set; }
-
-       
     }
 }

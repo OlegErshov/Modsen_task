@@ -17,15 +17,16 @@ namespace Library.Application.Commands.AuthorCommands.DeleteCommand
 
         public async Task<Unit> Handle(DeleteAuthorCommand request, CancellationToken cancellationToken)
         {
-            var deleteAuthor = await _authorRepository.FirstOrDefault(author => author.Id == request.Id, cancellationToken);
+            var deleteAuthor = await _authorRepository.FirstOrDefaultAsync(author => author.Id == request.Id, 
+                     cancellationToken);
+
             if (deleteAuthor is  null)
             {
                 _logger.LogInformation($"this Author with id {request.Id} doesn't exist in db");
             }
             else
             {
-                await _authorRepository.Delete(request.Id);
-                await _authorRepository.SaveChangesAsync(cancellationToken);
+                await _authorRepository.DeleteAsync(deleteAuthor, cancellationToken);
                 _logger.LogInformation($"Author {request.Id} has been deleted from db");
             }
             return Unit.Value;

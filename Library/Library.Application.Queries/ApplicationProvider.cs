@@ -1,6 +1,4 @@
-﻿
-using System.Reflection;
-
+﻿using System.Reflection;
 
 namespace Library.Application.Queries
 {

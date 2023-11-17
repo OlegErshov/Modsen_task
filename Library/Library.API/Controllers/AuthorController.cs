@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
-
 namespace Library.API.Controllers
 {
     [Route("api/[controller]")]
@@ -28,7 +27,6 @@ namespace Library.API.Controllers
             };
 
             var vm = await Mediator.Send(querie);
-
             return vm is not null ? Ok(vm) : NotFound();
         }
 

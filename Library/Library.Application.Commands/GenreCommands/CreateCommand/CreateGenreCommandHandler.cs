@@ -27,7 +27,7 @@ namespace Library.Application.Commands.GenreCommands.CreateCommand
         {
             var Id = Guid.NewGuid();
             var genre = new Genre(Id, request.createGenreDTO.Name);
-            var genreIsAlredyExist = await _genreRepository.FirstOrDefault(genre => genre.Name == request.createGenreDTO.Name, 
+            var genreIsAlredyExist = await _genreRepository.FirstOrDefaultAsync(genre => genre.Name == request.createGenreDTO.Name, 
                 cancellationToken);
             if(genreIsAlredyExist is not null)
             {

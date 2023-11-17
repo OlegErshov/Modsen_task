@@ -1,12 +1,8 @@
 ﻿using Library.Domain.Entities;
 using Library.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Library.Persistance.Services
 {
@@ -23,10 +19,12 @@ namespace Library.Persistance.Services
             await _context.Books.AddAsync(entity);
         }
 
-        public  Task Delete(Guid id)
+        public async Task<bool> DeleteAsync(Book entity,CancellationToken cancellationToken)
         {
-            var book = new Book { Id = id };
-            return Task.FromResult(_context.Books.Remove(book));
+
+            _context.Books.Remove(entity);
+            var deletedRows = await _context.SaveChangesAsync(cancellationToken);
+            return deletedRows > 0;
         }
 
         public async Task<Book> GetBookByISBN(string isbn,CancellationToken cancellationToken)
@@ -50,18 +48,38 @@ namespace Library.Persistance.Services
            return await _context.Books.ToListAsync(cancellationToken);
         }
 
-        public Book Update(Book entity)
+        public async Task<bool> UpdateAsync(Book entity,CancellationToken cancellationToken)
         {
-            return _context.Books.Update(entity).Entity;
+            var book = await _context.Books.FindAsync(entity.Id);
+
+            if(book is null)
+            {
+                return false;
+            }
+            updateBook(book,entity);
+
+            var updatedRows = await _context.SaveChangesAsync(cancellationToken);
+            return updatedRows > 0;
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             return await _context.SaveChangesAsync(cancellationToken);
         }
-        public async Task<Book> FirstOrDefault(Expression<Func<Book, bool>> filter, CancellationToken cancellationToken)
+        public async Task<Book> FirstOrDefaultAsync(Expression<Func<Book, bool>> filter, CancellationToken cancellationToken)
         {
             return await _context.Books.FirstOrDefaultAsync(filter, cancellationToken);
+        }
+
+        private static void updateBook(Book book, Book newBook)
+        {
+            book.Id = newBook.Id;
+            book.Title = newBook.Title;
+            book.AuthorId = newBook.AuthorId;
+            book.ISBN = newBook.ISBN;
+            book.ReturnDate = newBook.ReturnDate;
+            book.RecieveDate = newBook.RecieveDate;
+            book.GenreId = newBook.GenreId;
         }
     }
 }

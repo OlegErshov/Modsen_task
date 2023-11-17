@@ -13,7 +13,5 @@ namespace Library.Application.Queries.GenreQueries.GetByIdQuerie
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-
-       
     }
 }

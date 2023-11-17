@@ -34,12 +34,6 @@ namespace Library.API.AuthorizationInfo
                         LifetimeValidator = LifetimeValidator
                     };
                 });
-                //.AddIdentityServerAuthentication("Bearer", options =>
-                //{
-                //     options.ApiName = "LibraryWebApi";
-
-                //     options.Authority = "https://localhost:7132";
-                //});
 
             return services;
         }
@@ -53,4 +47,3 @@ namespace Library.API.AuthorizationInfo
         }
     }
 }
-

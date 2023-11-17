@@ -8,7 +8,5 @@ namespace Library.Application.Commands.BookCommands.Models
     {
         public string FirstName { get; set; }
         public string Surname { get; set; }
-
-        
     }
 }

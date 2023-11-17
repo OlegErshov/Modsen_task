@@ -19,7 +19,7 @@ namespace Library.Application.Commands.GenreCommands.UpdateCommand
 
         public async Task<Unit> Handle(UpdateGenreCommand request, CancellationToken cancellationToken)
         {
-            var updateGenre = await _genreRepository.FirstOrDefault(genre => genre.Id == request.updateGenreDTO.Id,
+            var updateGenre = await _genreRepository.FirstOrDefaultAsync(genre => genre.Id == request.updateGenreDTO.Id,
                 cancellationToken);
             if (updateGenre is null)
             {
@@ -28,8 +28,7 @@ namespace Library.Application.Commands.GenreCommands.UpdateCommand
             else
             {
                 var genre = new Genre(request.updateGenreDTO.Id, request.updateGenreDTO.Name);
-                _genreRepository.Update(genre);
-                await _genreRepository.SaveChangesAsync(cancellationToken);
+                await _genreRepository.UpdateAsync(genre, cancellationToken);
             }
             return Unit.Value;
         }
